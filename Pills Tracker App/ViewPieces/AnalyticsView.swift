@@ -13,8 +13,7 @@ import UIKit
     let beginView = UIView()
     beginView.layer.cornerRadius = 24
     beginView.layer.borderColor = UIColor(named: "Gray 2")?.cgColor
-    beginView.layer.borderWidth = 1
-    
+     beginView.layer.borderWidth = 0.5
     
    
     let labelView = UILabel()

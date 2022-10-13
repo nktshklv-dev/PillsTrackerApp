@@ -16,6 +16,7 @@
 		11C1B22028F3F1CA004D6428 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11C1B21E28F3F1CA004D6428 /* LaunchScreen.storyboard */; };
 		11C1B22E28F5C03A004D6428 /* RoundedProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1B22D28F5C03A004D6428 /* RoundedProgressBar.swift */; };
 		11C1B23028F5C822004D6428 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1B22F28F5C822004D6428 /* AnalyticsView.swift */; };
+		11C1B23228F6B00D004D6428 /* GetVaccinatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1B23128F6B00D004D6428 /* GetVaccinatedView.swift */; };
 		655A9E3483F2F775BC3604ED /* Pods_Pills_Tracker_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED57998ABDA235C4566BA6F2 /* Pods_Pills_Tracker_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		11C1B22128F3F1CA004D6428 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11C1B22D28F5C03A004D6428 /* RoundedProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedProgressBar.swift; sourceTree = "<group>"; };
 		11C1B22F28F5C822004D6428 /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
+		11C1B23128F6B00D004D6428 /* GetVaccinatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVaccinatedView.swift; sourceTree = "<group>"; };
 		229CCE8EB4EFAA7CE7C8B8F6 /* Pods-Pills Tracker App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills Tracker App.debug.xcconfig"; path = "Target Support Files/Pods-Pills Tracker App/Pods-Pills Tracker App.debug.xcconfig"; sourceTree = "<group>"; };
 		CD893D9BF4680147E4982E68 /* Pods-Pills Tracker App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills Tracker App.release.xcconfig"; path = "Target Support Files/Pods-Pills Tracker App/Pods-Pills Tracker App.release.xcconfig"; sourceTree = "<group>"; };
 		ED57998ABDA235C4566BA6F2 /* Pods_Pills_Tracker_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pills_Tracker_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +97,7 @@
 			children = (
 				11C1B22D28F5C03A004D6428 /* RoundedProgressBar.swift */,
 				11C1B22F28F5C822004D6428 /* AnalyticsView.swift */,
+				11C1B23128F6B00D004D6428 /* GetVaccinatedView.swift */,
 			);
 			path = ViewPieces;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				11C1B21B28F3F1C9004D6428 /* Pills_Tracker_App.xcdatamodeld in Sources */,
 				11C1B23028F5C822004D6428 /* AnalyticsView.swift in Sources */,
 				11C1B21128F3F1C9004D6428 /* AppDelegate.swift in Sources */,
+				11C1B23228F6B00D004D6428 /* GetVaccinatedView.swift in Sources */,
 				11C1B21328F3F1C9004D6428 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

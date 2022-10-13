@@ -53,9 +53,16 @@ class ViewController: UIViewController {
             make.top.equalTo(dateLabel.snp.bottom).offset(10)
             make.left.right.bottom.equalTo(view)
         }
+        
         let analyticsView = setupAnalyticsView()
         scrollView.addSubview(analyticsView)
         analyticsView.frame = CGRect(x: 30, y: 10, width: 327, height: 126)
+        
+        let getVaccinatedView = createGetVaccinatedview()
+        scrollView.addSubview(getVaccinatedView)
+        getVaccinatedView.frame = CGRect(x: 30, y: 150, width: 327, height: 101)
+        
+        
         
     }
     
