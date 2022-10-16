@@ -49,10 +49,6 @@ var progress: Float {
         setProgress(duration: timeToFill * Double(pathMoved), to: progress)
     }
 }
-
-
-
-
 fileprivate func createProgressView(){
     
     self.backgroundColor = .clear
@@ -163,3 +159,8 @@ init(frame: CGRect, lineWidth: CGFloat?, rounded: Bool) {
 }
 
 }
+
+
+
+
+

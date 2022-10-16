@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11689E8128F89B4F00040DAE /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11689E8028F89B4F00040DAE /* CustomTableViewCell.swift */; };
 		11C1B21128F3F1C9004D6428 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1B21028F3F1C9004D6428 /* AppDelegate.swift */; };
 		11C1B21328F3F1C9004D6428 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1B21228F3F1C9004D6428 /* SceneDelegate.swift */; };
 		11C1B21528F3F1C9004D6428 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1B21428F3F1C9004D6428 /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11689E8028F89B4F00040DAE /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		11C1B20D28F3F1C9004D6428 /* Pills Tracker App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pills Tracker App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11C1B21028F3F1C9004D6428 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11C1B21228F3F1C9004D6428 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,11 +97,20 @@
 		11C1B22A28F5C00C004D6428 /* ViewPieces */ = {
 			isa = PBXGroup;
 			children = (
+				11689E8028F89B4F00040DAE /* CustomTableViewCell.swift */,
+				11C1B25528F891F1004D6428 /* TableViewHeader */,
+			);
+			path = ViewPieces;
+			sourceTree = "<group>";
+		};
+		11C1B25528F891F1004D6428 /* TableViewHeader */ = {
+			isa = PBXGroup;
+			children = (
 				11C1B22D28F5C03A004D6428 /* RoundedProgressBar.swift */,
 				11C1B22F28F5C822004D6428 /* AnalyticsView.swift */,
 				11C1B23128F6B00D004D6428 /* GetVaccinatedView.swift */,
 			);
-			path = ViewPieces;
+			path = TableViewHeader;
 			sourceTree = "<group>";
 		};
 		767C7D86D9D7776D2714E78B /* Pods */ = {
@@ -228,6 +239,7 @@
 			files = (
 				11C1B21528F3F1C9004D6428 /* ViewController.swift in Sources */,
 				11C1B22E28F5C03A004D6428 /* RoundedProgressBar.swift in Sources */,
+				11689E8128F89B4F00040DAE /* CustomTableViewCell.swift in Sources */,
 				11C1B21B28F3F1C9004D6428 /* Pills_Tracker_App.xcdatamodeld in Sources */,
 				11C1B23028F5C822004D6428 /* AnalyticsView.swift in Sources */,
 				11C1B21128F3F1C9004D6428 /* AppDelegate.swift in Sources */,
