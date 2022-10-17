@@ -34,14 +34,33 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Bry-6s-ntS" secondAttribute="trailing" id="npq-QB-tQl"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Thursday" id="OKa-Ep-hAt"/>
+                    <navigationItem key="navigationItem" title="Thursday" leftItemsSupplementBackButton="YES" id="OKa-Ep-hAt">
+                        <barButtonItem key="backBarButtonItem" title=" " id="xlZ-iz-W4Q"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Bry-6s-ntS" id="fTF-F7-j2A"/>
+                        <segue destination="jwF-7A-NXM" kind="show" identifier="toSecondScreen" id="9d0-kD-Zyp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="978.46153846153845" y="-2.1327014218009479"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Uon-fj-m7h">
+            <objects>
+                <viewController id="jwF-7A-NXM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MRn-Gt-Zgj">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="fsX-JV-cau"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="ajC-Tc-oPX"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ma7-Ya-Llh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1771" y="-2"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Wlk-jQ-Qzx">

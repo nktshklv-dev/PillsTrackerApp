@@ -25,6 +25,7 @@ class ViewController: UIViewController {
       
         
     }
+    //MARK: - View init
     private func initialize(){
         greetingLabel.textColor = UIColor(named: "Gray 1")
         greetingLabel.textAlignment = .left
@@ -42,9 +43,6 @@ class ViewController: UIViewController {
         
         dateLabel.text = "Thursday"
         view.addSubview(dateLabel)
-        
-      
-        
         
         let screenHeaderView = UIView(frame: CGRect(x: 0, y: -50, width: 400, height: 100))
         screenHeaderView.addSubview(greetingLabel)
@@ -81,7 +79,27 @@ class ViewController: UIViewController {
         
         
         tableView.tableHeaderView = finalView
+        
+        let addButton = UIButton()
+        addButton.setImage(UIImage(named: "roundButton"), for: .normal)
+        view.addSubview(addButton)
+        addButton.addTarget(self, action: #selector(didTapAddButton), for: .touchUpInside)
+        addButton.snp.makeConstraints { make in
+            make.right.equalTo(view.snp.right).offset(-16)
+            make.bottom.equalTo(view.snp.bottom).offset(-32)
+        }
+       
     }
+    
+    
+    //MARK: - VC code
+    
+    @objc func didTapAddButton(){
+        performSegue(withIdentifier: "toSecondScreen", sender: self)
+        
+    }
+    
+    
 }
 
 extension ViewController: UITableViewDataSource{

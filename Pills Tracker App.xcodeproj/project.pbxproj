@@ -60,6 +60,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		11689E8228FD2B6800040DAE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				11C1B22A28F5C00C004D6428 /* ViewPieces */,
+			);
+			name = View;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		11689E8328FD2B8E00040DAE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				11C1B21428F3F1C9004D6428 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		11C1B20428F3F1C9004D6428 = {
 			isa = PBXGroup;
 			children = (
@@ -81,10 +98,10 @@
 		11C1B20F28F3F1C9004D6428 /* Pills Tracker App */ = {
 			isa = PBXGroup;
 			children = (
-				11C1B22A28F5C00C004D6428 /* ViewPieces */,
+				11689E8228FD2B6800040DAE /* View */,
+				11689E8328FD2B8E00040DAE /* Controller */,
 				11C1B21028F3F1C9004D6428 /* AppDelegate.swift */,
 				11C1B21228F3F1C9004D6428 /* SceneDelegate.swift */,
-				11C1B21428F3F1C9004D6428 /* ViewController.swift */,
 				11C1B21628F3F1C9004D6428 /* Main.storyboard */,
 				11C1B21C28F3F1CA004D6428 /* Assets.xcassets */,
 				11C1B21E28F3F1CA004D6428 /* LaunchScreen.storyboard */,
