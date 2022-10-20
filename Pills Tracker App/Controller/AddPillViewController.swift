@@ -53,17 +53,51 @@ class AddPillViewController: UIViewController {
             make.left.equalTo(pageNumber.snp.left)
         }
         
-        let button = CustomButton()
-        button.image = "ing"
-        view.addSubview(button)
-        button.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(20)
+        let pillButton = CustomButton()
+        pillButton.image = "pill"
+        view.addSubview(pillButton)
+        pillButton.snp.makeConstraints { make in
+            make.left.equalTo(view.snp.left).offset(23.5)
+            make.top.equalTo(titleLabel.snp.bottom).offset(45)
         }
+        let capsuleButton = CustomButton()
+        capsuleButton.image = "capsule"
+        view.addSubview(capsuleButton)
+        capsuleButton.snp.makeConstraints { make in
+            make.left.equalTo(pillButton.snp.right).offset(24)
+            make.top.equalTo(pillButton.snp.top)
+        }
+        let ampuleButton = CustomButton()
+        ampuleButton.image = "ampule"
+        view.addSubview(ampuleButton)
+        ampuleButton.snp.makeConstraints { make in
+            make.left.equalTo(capsuleButton.snp.right).offset(24)
+            make.top.equalTo(pillButton.snp.top)
+        }
+        let ingButton = CustomButton()
+        ingButton.image = "ing"
+        view.addSubview(ingButton)
+        ingButton.snp.makeConstraints { make in
+            make.left.equalTo(ampuleButton.snp.right).offset(24)
+            make.top.equalTo(pillButton.snp.top)
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+      
+        
+        
         
         
        
     
-    }
+    
     
    
     
@@ -74,6 +108,6 @@ class AddPillViewController: UIViewController {
     }
     
 
-     
+
 
 }

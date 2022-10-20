@@ -38,6 +38,7 @@ class CustomButton: UIButton {
     }
     
     private func createButton(image: String){
+        adjustsImageWhenHighlighted = false
         changeImage(image: image)
         addSubview(checkmark)
         isSelected = false
