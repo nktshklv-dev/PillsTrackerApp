@@ -53,35 +53,22 @@ class AddPillViewController: UIViewController {
             make.left.equalTo(pageNumber.snp.left)
         }
         
-        let buttonsView = UIView()
-        view.addSubview(buttonsView)
-        buttonsView.frame = CGRect(x: 20, y: 215, width: 338, height: 64)
-      
-        let button1 = ChooseMedicationImageButton()
-        buttonsView.addSubview(button1)
-        button1.frame = CGRect(x: 10, y: 0, width: 64, height: 64)
-        let button2 = ChooseMedicationImageButton()
-        buttonsView.addSubview(button2)
-        button2.frame = CGRect(x: 98, y: 0, width: 64, height: 64)
-        let button3 = ChooseMedicationImageButton()
-        buttonsView.addSubview(button3)
-        button3.frame = CGRect(x: 186, y: 0, width: 64, height: 64)
-        let button4 = ChooseMedicationImageButton()
-        buttonsView.addSubview(button4)
-        button4.frame = CGRect(x: 274, y: 0, width: 64, height: 64)
-        
-        deselectAllButtons()
+        let button = CustomButton()
+        button.image = "ing"
+        view.addSubview(button)
+        button.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
+        }
         
         
+       
+    
     }
     
+   
     
     
-    func deselectAllButtons(){
-        
-    }
   
-    
     @objc func closeVC(){
         navigationController?.popViewController(animated: true)
     }
