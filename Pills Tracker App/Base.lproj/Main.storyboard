@@ -46,21 +46,42 @@
             </objects>
             <point key="canvasLocation" x="978.46153846153845" y="-2.1327014218009479"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Pill View Controller-->
         <scene sceneID="Uon-fj-m7h">
             <objects>
-                <viewController id="jwF-7A-NXM" sceneMemberID="viewController">
+                <viewController id="jwF-7A-NXM" customClass="AddPillViewController" customModule="Pills_Tracker_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MRn-Gt-Zgj">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="fsX-JV-cau"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="ajC-Tc-oPX"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="ajC-Tc-oPX">
+                        <barButtonItem key="backBarButtonItem" title=" " id="M85-eI-zyS"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="wDD-Gp-SAb" kind="show" id="y0i-Yt-eLr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ma7-Ya-Llh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1771" y="-2"/>
+        </scene>
+        <!--Second Add Pill View Controller-->
+        <scene sceneID="OBb-KE-N8r">
+            <objects>
+                <viewController id="wDD-Gp-SAb" customClass="SecondAddPillViewController" customModule="Pills_Tracker_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="R55-n4-uJU">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Al8-Pb-dGU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="M6V-uO-HVR"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="45L-uc-C8a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2548" y="-2"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Wlk-jQ-Qzx">
