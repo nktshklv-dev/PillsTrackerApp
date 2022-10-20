@@ -8,6 +8,20 @@
 import UIKit
 
 class CustomButton: UIButton {
+    
+    
+    let checkmark = UIImageView(image: UIImage(named: "checkmark"))
+    override var isSelected: Bool {
+        didSet{
+            if isSelected{
+                print("selected")
+            }
+            else {
+                print("not selected")
+                
+            }
+        }
+    }
     var image: String = "capsule"{
         didSet{
             changeImage(image: image)
@@ -25,6 +39,14 @@ class CustomButton: UIButton {
     
     private func createButton(image: String){
         changeImage(image: image)
+        addSubview(checkmark)
+        isSelected = false
+        checkmark.layer.opacity = 0.0
+        checkmark.snp.makeConstraints { make in
+            make.left.equalTo(self.snp.left).offset(46)
+            make.bottom.equalTo(self.snp.bottom).offset(-46)
+        }
+        addTarget(self, action: #selector(selectedButton), for: .touchUpInside)
 
     }
     
@@ -52,6 +74,18 @@ class CustomButton: UIButton {
     
     
     @objc func selectedButton(){
+        UIView.animate(withDuration: 0.3, delay: 0) {
+            if self.isSelected{
+                self.transform = CGAffineTransform(scaleX: 1, y: 1)
+                self.checkmark.layer.opacity = 0.0
+               
+            }
+            else {
+                self.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+                self.checkmark.layer.opacity = 1
+            }
+        }
+        self.isSelected.toggle()
        
     }
     
