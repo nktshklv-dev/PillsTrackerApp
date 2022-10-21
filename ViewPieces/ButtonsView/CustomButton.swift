@@ -15,9 +15,11 @@ class CustomButton: UIButton {
         didSet{
             if isSelected{
                 print("selected")
+                changeSelectionState()
             }
             else {
                 print("not selected")
+                changeSelectionState()
                 
             }
         }
@@ -75,6 +77,13 @@ class CustomButton: UIButton {
     
     
     @objc func selectedButton(){
+        
+       changeSelectionState()
+        
+       
+    }
+    
+    func changeSelectionState(){
         UIView.animate(withDuration: 0.3, delay: 0) {
             if self.isSelected{
                 self.transform = CGAffineTransform(scaleX: 1, y: 1)
@@ -86,8 +95,7 @@ class CustomButton: UIButton {
                 self.checkmark.layer.opacity = 1
             }
         }
-        self.isSelected.toggle()
-       
+        
     }
     
 }

@@ -10,6 +10,7 @@ import SnapKit
 
 class AddPillViewController: UIViewController {
 
+    var buttonsArray = [UIButton]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -83,14 +84,23 @@ class AddPillViewController: UIViewController {
         }
         
         
+        buttonsArray = [pillButton, capsuleButton, ampuleButton, ingButton]
         
-        
-        
-        
-        
-        
+        for button in buttonsArray {
+            button.addTarget(self, action: #selector(deselectOtherButtons), for: .touchUpInside)
+        }
     }
       
+    @objc func deselectOtherButtons(_ sender: UIButton){
+        for button in buttonsArray{
+            button.isSelected = true
+            
+        }
+        sender.isSelected = false
+        
+        print(sender.currentImage)
+        
+    }
         
         
         
