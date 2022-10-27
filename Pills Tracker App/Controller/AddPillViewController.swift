@@ -53,30 +53,30 @@ class AddPillViewController: UIViewController {
             make.top.equalTo(pageNumber.snp.bottom).offset(12)
             make.left.equalTo(pageNumber.snp.left)
         }
-        
+        //MARK: - Buttons
         let pillButton = CustomButton()
-        pillButton.image = "pill"
+        pillButton.imageName = "pill"
         view.addSubview(pillButton)
         pillButton.snp.makeConstraints { make in
             make.left.equalTo(view.snp.left).offset(23.5)
             make.top.equalTo(titleLabel.snp.bottom).offset(45)
         }
         let capsuleButton = CustomButton()
-        capsuleButton.image = "capsule"
+        capsuleButton.imageName = "capsule"
         view.addSubview(capsuleButton)
         capsuleButton.snp.makeConstraints { make in
             make.left.equalTo(pillButton.snp.right).offset(24)
             make.top.equalTo(pillButton.snp.top)
         }
         let ampuleButton = CustomButton()
-        ampuleButton.image = "ampule"
+        ampuleButton.imageName = "ampule"
         view.addSubview(ampuleButton)
         ampuleButton.snp.makeConstraints { make in
             make.left.equalTo(capsuleButton.snp.right).offset(24)
             make.top.equalTo(pillButton.snp.top)
         }
         let ingButton = CustomButton()
-        ingButton.image = "ing"
+        ingButton.imageName = "ing"
         view.addSubview(ingButton)
         ingButton.snp.makeConstraints { make in
             make.left.equalTo(ampuleButton.snp.right).offset(24)
@@ -89,6 +89,35 @@ class AddPillViewController: UIViewController {
         for button in buttonsArray {
             button.addTarget(self, action: #selector(deselectOtherButtons), for: .touchUpInside)
         }
+        
+        //MARK: - Text fields
+        let nameTextField = UITextField()
+        nameTextField.font = UIFont.boldSystemFont(ofSize: 20)
+        nameTextField.placeholder = "Name"
+        view.addSubview(nameTextField)
+        nameTextField.snp.makeConstraints { make in
+            make.top.equalTo(pillButton.snp.bottom).offset(45)
+            make.left.equalTo(view).offset(24)
+        }
+        
+        let doseTextField = UITextField()
+        doseTextField.font = UIFont.boldSystemFont(ofSize: 20)
+        doseTextField.placeholder = "Single dose, e.g. 1 tablet"
+        view.addSubview(doseTextField)
+        doseTextField.snp.makeConstraints { make in
+            make.top.equalTo(nameTextField.snp.bottom).offset(44)
+            make.left.equalTo(view).offset(24)
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
       
     @objc func deselectOtherButtons(_ sender: UIButton){
@@ -99,7 +128,6 @@ class AddPillViewController: UIViewController {
         sender.isSelected = false
         
         print(sender.currentImage)
-        
     }
         
         

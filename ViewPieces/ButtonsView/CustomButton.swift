@@ -24,15 +24,15 @@ class CustomButton: UIButton {
             }
         }
     }
-    var image: String = "capsule"{
+    var imageName: String = "capsule"{
         didSet{
-            changeImage(image: image)
+            changeImage(image: imageName)
         }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        createButton(image: image)
+        createButton(image: imageName)
     }
     
     required init?(coder: NSCoder) {
