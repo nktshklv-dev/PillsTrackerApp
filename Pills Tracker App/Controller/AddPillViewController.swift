@@ -10,6 +10,9 @@ import SnapKit
 
 class AddPillViewController: UIViewController {
 
+    
+    let timestamps: [TimestampsModel] = [TimestampsModel(title: "Nevermind", isSelected: false), TimestampsModel(title: "Before Meals", isSelected: false), TimestampsModel(title: "After Meals", isSelected: false)]
+    var collectionView: UICollectionView?
     var buttonsArray = [UIButton]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +30,15 @@ class AddPillViewController: UIViewController {
         closeButton.addTarget(self, action: #selector(closeVC), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: closeButton)
         
-        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+       
+        guard let collectionView = collectionView else {return}
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
+        collectionView.frame = CGRect(x: 10, y: 450, width: 1000, height: 100)
         initialise()
 
         
@@ -112,7 +123,8 @@ class AddPillViewController: UIViewController {
         
         
         
-        
+        guard let collectionView = collectionView else {return}
+        view.addSubview(collectionView)
         
         
         
@@ -130,22 +142,22 @@ class AddPillViewController: UIViewController {
         print(sender.currentImage)
     }
         
-        
-        
-        
-       
-    
-    
-    
-   
-    
-    
-  
     @objc func closeVC(){
         navigationController?.popViewController(animated: true)
     }
     
+}
 
 
-
+extension AddPillViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 20
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath)
+        return cell
+    }
+    
+    
 }

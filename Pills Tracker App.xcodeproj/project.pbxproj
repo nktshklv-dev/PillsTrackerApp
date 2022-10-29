@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11181C7B290DC93A00CC41AF /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11181C7A290DC93A00CC41AF /* CollectionViewModel.swift */; };
+		11181C7D290DCFAF00CC41AF /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11181C7C290DCFAF00CC41AF /* CustomCollectionViewCell.swift */; };
 		112AB43628FE99D8006283AD /* AddPillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112AB43528FE99D8006283AD /* AddPillViewController.swift */; };
 		112AB43828FE9A98006283AD /* SecondAddPillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112AB43728FE9A98006283AD /* SecondAddPillViewController.swift */; };
 		1135BEDD2901F1310000CBD1 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1135BEDC2901F1310000CBD1 /* CustomButton.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11181C7A290DC93A00CC41AF /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
+		11181C7C290DCFAF00CC41AF /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		112AB43528FE99D8006283AD /* AddPillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPillViewController.swift; sourceTree = "<group>"; };
 		112AB43728FE9A98006283AD /* SecondAddPillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondAddPillViewController.swift; sourceTree = "<group>"; };
 		1135BEDC2901F1310000CBD1 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -66,6 +70,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		11181C79290DC92D00CC41AF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				11181C7A290DC93A00CC41AF /* CollectionViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		1135BED72901579B0000CBD1 /* ButtonsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				11C1B22A28F5C00C004D6428 /* ViewPieces */,
+				11181C7C290DCFAF00CC41AF /* CustomCollectionViewCell.swift */,
 			);
 			name = View;
 			path = ..;
@@ -114,6 +127,7 @@
 		11C1B20F28F3F1C9004D6428 /* Pills Tracker App */ = {
 			isa = PBXGroup;
 			children = (
+				11181C79290DC92D00CC41AF /* Model */,
 				11689E8228FD2B6800040DAE /* View */,
 				11689E8328FD2B8E00040DAE /* Controller */,
 				11C1B21028F3F1C9004D6428 /* AppDelegate.swift */,
@@ -271,8 +285,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11181C7B290DC93A00CC41AF /* CollectionViewModel.swift in Sources */,
 				11C1B21528F3F1C9004D6428 /* ViewController.swift in Sources */,
 				11C1B22E28F5C03A004D6428 /* RoundedProgressBar.swift in Sources */,
+				11181C7D290DCFAF00CC41AF /* CustomCollectionViewCell.swift in Sources */,
 				112AB43628FE99D8006283AD /* AddPillViewController.swift in Sources */,
 				11689E8128F89B4F00040DAE /* CustomTableViewCell.swift in Sources */,
 				11C1B21B28F3F1C9004D6428 /* Pills_Tracker_App.xcdatamodeld in Sources */,
