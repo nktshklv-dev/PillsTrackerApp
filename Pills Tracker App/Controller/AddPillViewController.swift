@@ -11,7 +11,7 @@ import SnapKit
 class AddPillViewController: UIViewController {
 
     
-    let timestamps: [TimestampsModel] = [TimestampsModel(title: "Nevermind", isSelected: false), TimestampsModel(title: "Before Meals", isSelected: false), TimestampsModel(title: "After Meals", isSelected: false)]
+    let timestamps: [TimestampsModel] = [TimestampsModel(title: "Nevermind", isSelected: true), TimestampsModel(title: "Before Meals", isSelected: false), TimestampsModel(title: "After Meals", isSelected: false), TimestampsModel(title: "With food", isSelected: false)]
     var collectionView: UICollectionView?
     var buttonsArray = [UIButton]()
     override func viewDidLoad() {
@@ -32,13 +32,17 @@ class AddPillViewController: UIViewController {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: view.frame.size.width / 2.60, height: view.frame.size.height / 15)
+        
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
        
         guard let collectionView = collectionView else {return}
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
-        collectionView.frame = CGRect(x: 10, y: 450, width: 1000, height: 100)
+        collectionView.bounces = true
+        collectionView.frame = CGRect(x: 20, y: 450, width: 345, height: 100)
         initialise()
 
         
@@ -152,12 +156,49 @@ class AddPillViewController: UIViewController {
 extension AddPillViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return timestamps.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as! CustomCollectionViewCell
+        cell.frame.size.height = 40
+        cell.frame.size.width = 150
+        
+        let timestamp = timestamps[indexPath.row]
+        cell.myLabel.text = timestamp.title
+        if timestamp.isSelected{
+            cell.changeState(isChosen: true)
+        }
+        else{
+            cell.changeState(isChosen: false)
+        }
+        
+        
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        var recentSelectedItemId = 0
+        for (id, item) in timestamps.enumerated(){
+            if item.isSelected{
+                recentSelectedItemId = id
+            }
+            else {
+                continue
+            }
+        }
+        
+        if recentSelectedItemId == indexPath.row{
+            return
+        }
+        else {
+            timestamps[recentSelectedItemId].isSelected.toggle()
+            timestamps[indexPath.row].isSelected.toggle()
+        }
+        
+        collectionView.reloadData()
+    }
+    
+  
     
     
 }
