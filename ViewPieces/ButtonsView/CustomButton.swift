@@ -13,15 +13,16 @@ class CustomButton: UIButton {
     let checkmark = UIImageView(image: UIImage(named: "checkmark"))
     override var isSelected: Bool {
         didSet{
-            if isSelected{
-                print("selected")
-                changeSelectionState()
-            }
-            else {
-                print("not selected")
-                changeSelectionState()
-                
-            }
+//            if isSelected{
+//                print("selected")
+//                changeSelectionState()
+//            }
+//            else {
+//                print("not selected")
+//               changeSelectionState()
+//
+//            }
+            changeSelectionState()
         }
     }
     var imageName: String = "capsule"{
@@ -43,7 +44,6 @@ class CustomButton: UIButton {
         adjustsImageWhenHighlighted = false
         changeImage(image: image)
         addSubview(checkmark)
-        isSelected = false
         checkmark.layer.opacity = 0.0
         checkmark.snp.makeConstraints { make in
             make.left.equalTo(self.snp.left).offset(46)
@@ -86,13 +86,13 @@ class CustomButton: UIButton {
     func changeSelectionState(){
         UIView.animate(withDuration: 0.3, delay: 0) {
             if self.isSelected{
-                self.transform = CGAffineTransform(scaleX: 1, y: 1)
-                self.checkmark.layer.opacity = 0.0
+                self.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+                self.checkmark.layer.opacity = 1
                
             }
             else {
-                self.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-                self.checkmark.layer.opacity = 1
+                self.transform = CGAffineTransform(scaleX: 1, y: 1)
+                self.checkmark.layer.opacity = 0
             }
         }
         

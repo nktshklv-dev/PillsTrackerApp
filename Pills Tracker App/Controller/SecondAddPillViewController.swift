@@ -8,7 +8,12 @@
 import UIKit
 
 class SecondAddPillViewController: UIViewController {
-
+    
+    var selectedPicture: String = ""
+    var selectedTabletName: String = ""
+    var selectedTabletDose: String = ""
+    var selectedTabletTimestamp: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
  
@@ -25,6 +30,8 @@ class SecondAddPillViewController: UIViewController {
         closeButton.frame = CGRect(x: 0, y: 0, width: 50, height: 20)
         closeButton.addTarget(self, action: #selector(closeVC), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: closeButton)
+        
+        initialise()
     }
     
     @objc func previousVC(){
@@ -34,7 +41,31 @@ class SecondAddPillViewController: UIViewController {
         navigationController?.popToRootViewController(animated: true)
     }
     
-
+    func initialise(){
+        let pageNumberLabel = UILabel()
+        pageNumberLabel.text = "2 is 2"
+        pageNumberLabel.font = UIFont.systemFont(ofSize: 16)
+        pageNumberLabel.textColor = UIColor(named: "Gray 1")
+        view.addSubview(pageNumberLabel)
+        pageNumberLabel.snp.makeConstraints { make in
+            make.left.equalTo(view.snp.left).offset(24)
+            make.top.equalTo(view.snp.top).offset(100)
+        }
+        
+        let titleLabel = UILabel()
+        titleLabel.text = "Schedule"
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 34)
+        titleLabel.textColor = UIColor(named: "Dark")
+        view.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
+            make.left.equalTo(pageNumberLabel)
+            make.top.equalTo(pageNumberLabel.snp.bottom).offset(12)
+            
+            
+        
+        }
+        
+    }
    
 
 }

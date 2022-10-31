@@ -10,6 +10,10 @@ import SnapKit
 
 class AddPillViewController: UIViewController {
 
+    var selectedPicture: String = ""
+    var selectedTabletName: String = ""
+    var selectedTabletDose: String = ""
+    var selectedTabletTimestamp: String = ""
     
     let timestamps: [TimestampsModel] = [TimestampsModel(title: "Nevermind", isSelected: true), TimestampsModel(title: "Before Meals", isSelected: false), TimestampsModel(title: "After Meals", isSelected: false), TimestampsModel(title: "With food", isSelected: false)]
     var collectionView: UICollectionView?
@@ -158,10 +162,10 @@ class AddPillViewController: UIViewController {
       
     @objc func deselectOtherButtons(_ sender: UIButton){
         for button in buttonsArray{
-            button.isSelected = true
+            button.isSelected = false
             
         }
-        sender.isSelected = false
+        sender.isSelected = true
     }
         
     @objc func closeVC(){
