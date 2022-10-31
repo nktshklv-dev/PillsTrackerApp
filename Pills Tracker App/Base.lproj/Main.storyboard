@@ -60,7 +60,7 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="M85-eI-zyS"/>
                     </navigationItem>
                     <connections>
-                        <segue destination="wDD-Gp-SAb" kind="show" id="y0i-Yt-eLr"/>
+                        <segue destination="wDD-Gp-SAb" kind="show" identifier="toThirdScreen" id="y0i-Yt-eLr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ma7-Ya-Llh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -14,6 +14,9 @@ class AddPillViewController: UIViewController {
     let timestamps: [TimestampsModel] = [TimestampsModel(title: "Nevermind", isSelected: true), TimestampsModel(title: "Before Meals", isSelected: false), TimestampsModel(title: "After Meals", isSelected: false), TimestampsModel(title: "With food", isSelected: false)]
     var collectionView: UICollectionView?
     var buttonsArray = [UIButton]()
+    var nameTextField = UITextField()
+    var doseTextField = UITextField()
+    var nextScreenButton = UIButton()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -106,7 +109,7 @@ class AddPillViewController: UIViewController {
         }
         
         //MARK: - Text fields
-        let nameTextField = UITextField()
+        nameTextField = UITextField()
         nameTextField.font = UIFont.boldSystemFont(ofSize: 20)
         nameTextField.placeholder = "Name"
         view.addSubview(nameTextField)
@@ -115,7 +118,7 @@ class AddPillViewController: UIViewController {
             make.left.equalTo(view).offset(24)
         }
         
-        let doseTextField = UITextField()
+        doseTextField = UITextField()
         doseTextField.font = UIFont.boldSystemFont(ofSize: 20)
         doseTextField.placeholder = "Single dose, e.g. 1 tablet"
         view.addSubview(doseTextField)
@@ -126,10 +129,27 @@ class AddPillViewController: UIViewController {
         
         
         
-        
+        //MARK: - Collection View
         guard let collectionView = collectionView else {return}
         view.addSubview(collectionView)
         
+        
+        
+        
+        //MARK: - Next Screen Button
+        nextScreenButton = UIButton()
+        nextScreenButton.isUserInteractionEnabled = true
+        nextScreenButton.setImage(UIImage(named: "disabledButton"), for: .normal)
+        view.addSubview(nextScreenButton)
+        nextScreenButton.snp.makeConstraints { make in
+            make.bottom.equalTo(view.snp.bottom).offset(-44)
+            make.left.equalTo(view.snp.left).offset(24)
+            make.right.equalTo(view.snp.right).offset(-24)
+        }
+        nextScreenButton.addTarget(self, action: #selector(changeScreen), for: .touchUpInside)
+        
+        
+       
         
         
         
@@ -142,8 +162,6 @@ class AddPillViewController: UIViewController {
             
         }
         sender.isSelected = false
-        
-        print(sender.currentImage)
     }
         
     @objc func closeVC(){
@@ -152,7 +170,7 @@ class AddPillViewController: UIViewController {
     
 }
 
-
+//MARK: - Collection View Delegate and Collection View DataSource
 extension AddPillViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -177,6 +195,7 @@ extension AddPillViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        areAllFieldsFilled()
         var recentSelectedItemId = 0
         for (id, item) in timestamps.enumerated(){
             if item.isSelected{
@@ -194,11 +213,43 @@ extension AddPillViewController: UICollectionViewDelegate, UICollectionViewDataS
             timestamps[recentSelectedItemId].isSelected.toggle()
             timestamps[indexPath.row].isSelected.toggle()
         }
-        
+     
         collectionView.reloadData()
     }
     
-  
+  //MARK: - areAllFieldsFilled
+    func areAllFieldsFilled(){
+       
+        var isButtonSelected = false
+        for button in buttonsArray{
+            if button.isSelected{
+                isButtonSelected = true
+            }
+        }
+        var timestampIsSelected = false
+        for timestamp in timestamps {
+            if timestamp.isSelected{
+                timestampIsSelected = true
+            }
+        }
+        
+        if isButtonSelected && nameTextField.text != "" && doseTextField.text != "" && timestampIsSelected{
+            changeButtonStatus()
+        }
+       
+            
+    }
     
+    
+    func changeButtonStatus(){
+        nextScreenButton.setImage(UIImage(named: "enabledButton"), for: .normal)
+        nextScreenButton.isUserInteractionEnabled = true
+        print("changed status")
+    }
+    
+    
+    @objc func changeScreen(){
+        performSegue(withIdentifier: "toThirdScreen", sender: self)
+    }
     
 }

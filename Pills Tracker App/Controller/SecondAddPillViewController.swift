@@ -11,19 +11,30 @@ class SecondAddPillViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+ 
+        let backButton = UIButton()
+        backButton.addTarget(self, action: #selector(previousVC), for: .touchUpInside)
+        backButton.setImage(UIImage(named: "backButton"), for: .normal)
+        backButton.frame = CGRect(x: 0, y: 0, width: 30, height: 20)
+       
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
 
-        // Do any additional setup after loading the view.
+        
+        let closeButton = UIButton()
+        closeButton.setImage(UIImage(named: "closeButton2"), for: .normal)
+        closeButton.frame = CGRect(x: 0, y: 0, width: 50, height: 20)
+        closeButton.addTarget(self, action: #selector(closeVC), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: closeButton)
+    }
+    
+    @objc func previousVC(){
+        navigationController?.popViewController(animated: true)
+    }
+    @objc func closeVC(){
+        navigationController?.popToRootViewController(animated: true)
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
 
 }
