@@ -160,11 +160,13 @@ class AddPillViewController: UIViewController {
         
     }
       
-    @objc func deselectOtherButtons(_ sender: UIButton){
+    @objc func deselectOtherButtons(_ sender: CustomButton){
         for button in buttonsArray{
             button.isSelected = false
             
         }
+        selectedPicture = sender.imageName
+        print("Selected Picture: " + selectedPicture)
         sender.isSelected = true
     }
         
@@ -217,7 +219,8 @@ extension AddPillViewController: UICollectionViewDelegate, UICollectionViewDataS
             timestamps[recentSelectedItemId].isSelected.toggle()
             timestamps[indexPath.row].isSelected.toggle()
         }
-     
+        selectedTabletTimestamp = timestamps[indexPath.row].title
+        print(selectedTabletTimestamp)
         collectionView.reloadData()
     }
     
