@@ -25,11 +25,11 @@ class AddPillViewController: UIViewController {
         super.viewDidLoad()
         
         let backButton = UIButton()
-//        backButton.setImage(UIImage(named: "backButton"), for: .normal)
         backButton.frame = CGRect(x: 0, y: 0, width: 50, height: 20)
        
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
 
+        
         
         let closeButton = UIButton()
         closeButton.setImage(UIImage(named: "closeButton2"), for: .normal)
@@ -116,6 +116,7 @@ class AddPillViewController: UIViewController {
         nameTextField = UITextField()
         nameTextField.font = UIFont.boldSystemFont(ofSize: 20)
         nameTextField.placeholder = "Name"
+        nameTextField.delegate = self
         view.addSubview(nameTextField)
         nameTextField.snp.makeConstraints { make in
             make.top.equalTo(pillButton.snp.bottom).offset(45)
@@ -125,6 +126,7 @@ class AddPillViewController: UIViewController {
         doseTextField = UITextField()
         doseTextField.font = UIFont.boldSystemFont(ofSize: 20)
         doseTextField.placeholder = "Single dose, e.g. 1 tablet"
+        doseTextField.delegate = self
         view.addSubview(doseTextField)
         doseTextField.snp.makeConstraints { make in
             make.top.equalTo(nameTextField.snp.bottom).offset(44)
@@ -159,6 +161,7 @@ class AddPillViewController: UIViewController {
         
         
     }
+    
       
     @objc func deselectOtherButtons(_ sender: CustomButton){
         for button in buttonsArray{
@@ -168,6 +171,7 @@ class AddPillViewController: UIViewController {
         selectedPicture = sender.imageName
         print("Selected Picture: " + selectedPicture)
         sender.isSelected = true
+        areAllFieldsFilled()
     }
         
     @objc func closeVC(){
@@ -175,6 +179,7 @@ class AddPillViewController: UIViewController {
     }
     
 }
+
 
 //MARK: - Collection View Delegate and Collection View DataSource
 extension AddPillViewController: UICollectionViewDelegate, UICollectionViewDataSource{
@@ -251,7 +256,6 @@ extension AddPillViewController: UICollectionViewDelegate, UICollectionViewDataS
     func changeButtonStatus(){
         nextScreenButton.setImage(UIImage(named: "enabledButton"), for: .normal)
         nextScreenButton.isUserInteractionEnabled = true
-        print("changed status")
     }
     
     
@@ -259,4 +263,57 @@ extension AddPillViewController: UICollectionViewDelegate, UICollectionViewDataS
         performSegue(withIdentifier: "toThirdScreen", sender: self)
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toThirdScreen"{
+            guard let destination = segue.destination as? SecondAddPillViewController else {return}
+            
+            destination.selectedPicture = self.selectedPicture
+            destination.selectedTabletName = self.selectedTabletName
+            destination.selectedTabletDose = self.selectedTabletDose
+            destination.selectedTabletTimestamp = self.selectedTabletTimestamp
+        }
+    }
+    
+}
+
+//MARK: - TextField Delegate Methods
+extension AddPillViewController: UITextFieldDelegate{
+    
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        if textField.text == ""{
+            return
+        }
+        else {
+            if textField.placeholder! == "Name"{
+                selectedTabletName = textField.text!
+                print(selectedTabletName)
+            }
+            else {
+                selectedTabletDose = textField.text!
+                print(selectedTabletDose)
+            }
+        }
+        
+        areAllFieldsFilled()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.text == ""{
+            return false
+        }
+        else {
+            if textField.placeholder! == "Name"{
+                selectedTabletName = textField.text!
+                print(selectedTabletName)
+            }
+            else {
+                selectedTabletDose = textField.text!
+                print(selectedTabletDose)
+            }
+        }
+      
+        areAllFieldsFilled()
+        return true
+    }
 }

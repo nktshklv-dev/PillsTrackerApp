@@ -30,7 +30,11 @@ class SecondAddPillViewController: UIViewController {
         closeButton.frame = CGRect(x: 0, y: 0, width: 50, height: 20)
         closeButton.addTarget(self, action: #selector(closeVC), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: closeButton)
-        
+        print("------")
+        print(selectedPicture)
+        print(selectedTabletDose)
+        print(selectedTabletName)
+        print(selectedTabletTimestamp)
         initialise()
     }
     
