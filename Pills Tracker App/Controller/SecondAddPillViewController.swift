@@ -21,6 +21,8 @@ class SecondAddPillViewController: UIViewController {
     var addButton = UIButton()
     var timestamps = [String]()
     var switcher = UISwitch()
+    
+    var reminderStackView = UIStackView()
         override func viewDidLoad() {
             super.viewDidLoad()
             
@@ -131,23 +133,35 @@ class SecondAddPillViewController: UIViewController {
             remindersTitle.text = "Reminders"
             remindersTitle.font = UIFont.boldSystemFont(ofSize: 20)
             remindersTitle.textColor = UIColor(named: "Dark")
-            view.addSubview(remindersTitle)
-            remindersTitle.snp.makeConstraints { make in
-                make.left.equalTo(addButton)
-                make.top.equalTo(titleLabel.snp.bottom).offset(330)
-            }
+           
+           
             
             switcher = UISwitch()
             switcher.isOn = false
             switcher.onTintColor = UIColor(named: "Gray 4")
             switcher.thumbTintColor = UIColor(named: "Blue")
-            view.addSubview(switcher)
+            switcher.addTarget(self, action: #selector(didTapswitcher), for: .touchUpInside)
+            
+            
+            
+            reminderStackView = UIStackView()
+            reminderStackView.axis = .vertical
+            reminderStackView.alignment = .fill
+            view.addSubview(reminderStackView)
+            reminderStackView.snp.makeConstraints { make in make.left.equalTo(addButton)
+                make.top.equalTo(titleLabel.snp.bottom).offset(330)
+                make.left.equalTo(view).offset(24)
+                make.right.equalTo(view).offset(-24)
+            }
+            
+            
+            reminderStackView.addArrangedSubview(remindersTitle)
+            reminderStackView.addSubview(switcher)
             switcher.snp.makeConstraints { make in
                 make.right.equalTo(view.snp.right).offset(-24)
                 make.top.equalTo(titleLabel.snp.bottom).offset(326)
             }
-            
-            switcher.addTarget(self, action: #selector(didTapswitcher), for: .touchUpInside)
+         
             
             
             
@@ -201,6 +215,7 @@ class SecondAddPillViewController: UIViewController {
     
         
     @objc func didTapswitcher(_ sender: UISwitch){
+        
         print("didTapswitcher, \(sender.isOn)")
     }
         func getImageView(for selectedPicture: String){
