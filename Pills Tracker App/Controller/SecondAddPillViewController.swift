@@ -20,6 +20,7 @@ class SecondAddPillViewController: UIViewController {
     var timestampCount = 0
     var addButton = UIButton()
     var timestamps = [String]()
+    var switcher = UISwitch()
         override func viewDidLoad() {
             super.viewDidLoad()
             
@@ -118,12 +119,36 @@ class SecondAddPillViewController: UIViewController {
             addButton.addTarget(self, action: #selector(addTimestamp), for: .touchUpInside)
             view.addSubview(addButton)
             addButton.snp.makeConstraints { make in
-                make.top.equalTo(stackView.snp.bottom).offset(28)
+                make.top.equalTo(stackView.snp.bottom).offset(15)
                 make.left.equalTo(stackView)
             }
             
             
             createDoseTimeView()
+            
+            
+            let remindersTitle = UILabel()
+            remindersTitle.text = "Reminders"
+            remindersTitle.font = UIFont.boldSystemFont(ofSize: 20)
+            remindersTitle.textColor = UIColor(named: "Dark")
+            view.addSubview(remindersTitle)
+            remindersTitle.snp.makeConstraints { make in
+                make.left.equalTo(addButton)
+                make.top.equalTo(titleLabel.snp.bottom).offset(330)
+            }
+            
+            switcher = UISwitch()
+            switcher.isOn = false
+            switcher.onTintColor = UIColor(named: "Gray 4")
+            switcher.thumbTintColor = UIColor(named: "Blue")
+            view.addSubview(switcher)
+            switcher.snp.makeConstraints { make in
+                make.right.equalTo(view.snp.right).offset(-24)
+                make.top.equalTo(titleLabel.snp.bottom).offset(326)
+            }
+            
+            switcher.addTarget(self, action: #selector(didTapswitcher), for: .touchUpInside)
+            
             
             
             
@@ -175,7 +200,9 @@ class SecondAddPillViewController: UIViewController {
     }
     
         
-        
+    @objc func didTapswitcher(_ sender: UISwitch){
+        print("didTapswitcher, \(sender.isOn)")
+    }
         func getImageView(for selectedPicture: String){
             let imageView = UIImageView(image: UIImage(named: selectedPicture))
             view.addSubview(imageView)
