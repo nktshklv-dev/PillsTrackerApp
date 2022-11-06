@@ -280,7 +280,7 @@ extension AddPillViewController: UICollectionViewDelegate, UICollectionViewDataS
 //MARK: - TextField Delegate Methods
 extension AddPillViewController: UITextFieldDelegate{
     
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.text == ""{
             return
         }
@@ -298,7 +298,10 @@ extension AddPillViewController: UITextFieldDelegate{
         areAllFieldsFilled()
     }
     
+       
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
         if textField.text == ""{
             return false
         }
