@@ -21,8 +21,9 @@ class SecondAddPillViewController: UIViewController {
     var addButton = UIButton()
     var timestamps = [String]()
     var switcher = UISwitch()
-    
+    var buttonsArray = [UIButton]()
     var reminderStackView = UIStackView()
+    var bottomButton = UIButton()
         override func viewDidLoad() {
             super.viewDidLoad()
             
@@ -46,14 +47,15 @@ class SecondAddPillViewController: UIViewController {
             print(selectedTabletTimestamp)
             initialise()
         }
-        
+        //MARK: - previousVC
         @objc func previousVC(){
             navigationController?.popViewController(animated: true)
         }
+    //MARK: - closeVC
         @objc func closeVC(){
             navigationController?.popToRootViewController(animated: true)
         }
-        
+        //MARK: - initialise!
         func initialise(){
             let pageNumberLabel = UILabel()
             pageNumberLabel.text = "2 is 2"
@@ -147,6 +149,7 @@ class SecondAddPillViewController: UIViewController {
             reminderStackView = UIStackView()
             reminderStackView.axis = .vertical
             reminderStackView.alignment = .fill
+            reminderStackView.spacing = 32
             view.addSubview(reminderStackView)
             reminderStackView.snp.makeConstraints { make in make.left.equalTo(addButton)
                 make.top.equalTo(titleLabel.snp.bottom).offset(330)
@@ -157,19 +160,34 @@ class SecondAddPillViewController: UIViewController {
             
             reminderStackView.addArrangedSubview(remindersTitle)
             reminderStackView.addSubview(switcher)
+            
             switcher.snp.makeConstraints { make in
                 make.right.equalTo(view.snp.right).offset(-24)
                 make.top.equalTo(titleLabel.snp.bottom).offset(326)
             }
+            let stack = getMinutesView()
+            reminderStackView.addArrangedSubview(stack)
+            reminderStackView.arrangedSubviews[1].isHidden = true
+            self.reminderStackView.arrangedSubviews[1].layer.opacity = 0
+            
+            
+            bottomButton = UIButton()
+            bottomButton.setImage(UIImage(named: "addMedicationTimesButton"), for: .normal)
+            bottomButton.addTarget(self, action: #selector(didTapBottomButton), for: .touchUpInside)
+            view.addSubview(bottomButton)
+            bottomButton.snp.makeConstraints { make in
+                make.bottom.equalTo(view.snp.bottom).offset(-44)
+                make.left.equalTo(view.snp.left).offset(24)
+            }
+            
+         
          
             
             
-            
-            
-            
+
             
         }
-    
+    //MARK: - addTimestamp
     @objc func addTimestamp(){
         if timestampCount > 1 {
             let ac = UIAlertController(title: "You can't add more than 3 timestamps with free subscription!", message: nil, preferredStyle: .alert)
@@ -212,12 +230,36 @@ class SecondAddPillViewController: UIViewController {
         timestampCount += 1
         
     }
-    
+    //MARK: - didTapBottomButton
+    @objc func didTapBottomButton(){
+        navigationController?.popToRootViewController(animated: true)
         
+    }
+    //MARK: - didTapswitcher
     @objc func didTapswitcher(_ sender: UISwitch){
         
         print("didTapswitcher, \(sender.isOn)")
+        
+        UIView.animate(withDuration: 0.5 , delay: 0) {
+            if sender.isOn{
+                self.reminderStackView.arrangedSubviews[1].isHidden = false
+                self.reminderStackView.arrangedSubviews[1].layer.opacity = 1
+                
+            }
+            else {
+                self.reminderStackView.arrangedSubviews[1].isHidden = true
+                self.reminderStackView.arrangedSubviews[1].layer.opacity = 0
+                
+            }
+            
+           
+        }
+        
+        
     }
+    
+    
+    //MARK: - getImageView
         func getImageView(for selectedPicture: String){
             let imageView = UIImageView(image: UIImage(named: selectedPicture))
             view.addSubview(imageView)
@@ -257,7 +299,7 @@ class SecondAddPillViewController: UIViewController {
             print(selectedPicture)
         }
         
-        
+        //MARK: - createDoseTimeView
         func createDoseTimeView(){
                 let horStack = UIStackView()
                 horStack.axis = .horizontal
@@ -290,13 +332,13 @@ class SecondAddPillViewController: UIViewController {
                 
                 stackView.addArrangedSubview(horStack)
         }
-        
+        //MARK: - doneAction
         @objc func doneAction(){
             getDateFromPicker()
             view.endEditing(true)
         }
         
-        
+        //MARK: - getDateFromPicker
         func getDateFromPicker(){
             let formatter = DateFormatter()
             formatter.dateFormat = "HH:mm"
@@ -305,8 +347,73 @@ class SecondAddPillViewController: UIViewController {
             timestamps.append(formatter.string(from: datePicker.date))
             print(timestamps)
         }
+    
+    //MARK: - getMinutesView
+    func getMinutesView() -> UIStackView{
+        let returnStack = UIStackView(frame: CGRect(x: 0, y: 0, width: 327, height: 24))
+        returnStack.axis = .horizontal
+        returnStack.distribution = .equalSpacing
+        returnStack.spacing = 24
+    
+        let button5min = UIButton(frame: CGRect(x: 0, y: 0, width: 53, height: 24))
+        button5min.setTitle("in 5 m", for: .normal)
+        button5min.setTitleColor(UIColor(named: "Gray 2"), for: .normal)
+        button5min.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button5min.addTarget(self, action: #selector(didTapTimeButton), for: .touchUpInside)
+        
+        let button10min = UIButton(frame: CGRect(x: 0, y: 0, width: 43, height: 24))
+        button10min.setTitle("10 m", for: .normal)
+        button10min.setTitleColor(UIColor(named: "Gray 2"), for: .normal)
+        button10min.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button10min.addTarget(self, action: #selector(didTapTimeButton), for: .touchUpInside)
+        
+        let button15min = UIButton(frame: CGRect(x: 0, y: 0, width: 43, height: 24))
+        button15min.setTitle("15 m", for: .normal)
+        button15min.setTitleColor(UIColor(named: "Gray 2"), for: .normal)
+        button15min.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button15min.addTarget(self, action: #selector(didTapTimeButton), for: .touchUpInside)
+        
+        let button20min = UIButton(frame: CGRect(x: 0, y: 0, width: 43, height: 24))
+        button20min.setTitle("20 m", for: .normal)
+        button20min.setTitleColor(UIColor(named: "Gray 2"), for: .normal)
+        button20min.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button20min.addTarget(self, action: #selector(didTapTimeButton), for: .touchUpInside)
+        
+        let button30min = UIButton(frame: CGRect(x: 0, y: 0, width: 43, height: 24))
+        button30min.setTitle("30 m", for: .normal)
+        button30min.setTitleColor(UIColor(named: "Gray 2"), for: .normal)
+        button30min.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button30min.addTarget(self, action: #selector(didTapTimeButton), for: .touchUpInside)
         
         
+        buttonsArray.append(contentsOf: [button5min, button10min, button15min, button20min, button30min])
+        returnStack.alignment = .fill
+        returnStack.addArrangedSubview(button5min)
+        returnStack.addArrangedSubview(button10min)
+        returnStack.addArrangedSubview(button15min)
+        returnStack.addArrangedSubview(button20min)
+        returnStack.addArrangedSubview(button30min)
+        
+        
+        
+        return returnStack
     }
+    
+    //MARK: - didTapTimeButton
+    @objc func didTapTimeButton(_ sender: UIButton){
+        for button in buttonsArray {
+            button.setTitleColor(UIColor(named: "Gray 2"), for: .normal)
+        }
+        if sender.titleColor(for: .normal) == UIColor(named: "Dark"){
+            sender.setTitleColor(UIColor(named: "Gray 2"), for: .normal)
+            
+        }
+        else {
+            sender.setTitleColor(UIColor(named: "Dark"), for: .normal)
+        }
+       
+    }
+        
+}
     
 
