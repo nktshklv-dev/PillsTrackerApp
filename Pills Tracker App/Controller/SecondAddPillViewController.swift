@@ -24,6 +24,7 @@ class SecondAddPillViewController: UIViewController {
     var buttonsArray = [UIButton]()
     var reminderStackView = UIStackView()
     var bottomButton = UIButton()
+    var remindTime = ""
         override func viewDidLoad() {
             super.viewDidLoad()
             
@@ -170,14 +171,15 @@ class SecondAddPillViewController: UIViewController {
             reminderStackView.arrangedSubviews[1].isHidden = true
             self.reminderStackView.arrangedSubviews[1].layer.opacity = 0
             
-            
             bottomButton = UIButton()
             bottomButton.setImage(UIImage(named: "addMedicationTimesButton"), for: .normal)
             bottomButton.addTarget(self, action: #selector(didTapBottomButton), for: .touchUpInside)
+            bottomButton.isUserInteractionEnabled = false
             view.addSubview(bottomButton)
             bottomButton.snp.makeConstraints { make in
                 make.bottom.equalTo(view.snp.bottom).offset(-44)
                 make.left.equalTo(view.snp.left).offset(24)
+                make.right.equalTo(view.snp.right).offset(-24)
             }
             
          
@@ -335,6 +337,7 @@ class SecondAddPillViewController: UIViewController {
         //MARK: - doneAction
         @objc func doneAction(){
             getDateFromPicker()
+            checkFields()
             view.endEditing(true)
         }
         
@@ -410,10 +413,30 @@ class SecondAddPillViewController: UIViewController {
         }
         else {
             sender.setTitleColor(UIColor(named: "Dark"), for: .normal)
+            remindTime = sender.titleLabel!.text!
         }
+        
+        checkFields()
        
     }
+    
+    
+    //MARK: - checkFields
+    func checkFields(){
+        guard !selectedPicture.isEmpty else {return}
+        guard !selectedTabletName.isEmpty else {return}
+        guard !selectedTabletDose.isEmpty else {return}
+        guard !selectedTabletTimestamp.isEmpty else {return}
         
+        guard !timestamps.isEmpty else {return}
+    
+        bottomButton.isUserInteractionEnabled = true
+        bottomButton.setImage(UIImage(named: "doneButton"), for: .normal)
+    
+    }
+        
+    
 }
+
     
 

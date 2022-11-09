@@ -144,7 +144,7 @@ class AddPillViewController: UIViewController {
         
         //MARK: - Next Screen Button
         nextScreenButton = UIButton()
-        nextScreenButton.isUserInteractionEnabled = true
+        nextScreenButton.isUserInteractionEnabled = false
         nextScreenButton.setImage(UIImage(named: "disabledButton"), for: .normal)
         view.addSubview(nextScreenButton)
         nextScreenButton.snp.makeConstraints { make in
