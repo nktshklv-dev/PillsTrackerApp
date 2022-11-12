@@ -331,14 +331,18 @@ extension AddPillViewController: UITextFieldDelegate{
             if textField.placeholder! == "Name"{
                 selectedTabletName = textField.text!
                 print(selectedTabletName)
+                nameTextField.resignFirstResponder()
             }
             else {
                 selectedTabletDose = textField.text!
                 print(selectedTabletDose)
+                doseTextField.resignFirstResponder()
             }
+            
         }
       
         areAllFieldsFilled()
+      
         return true
     }
 }
