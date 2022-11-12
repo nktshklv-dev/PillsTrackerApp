@@ -190,6 +190,7 @@ class SecondAddPillViewController: UIViewController {
             
         }
     
+    //TODO: - refactore code!!!
     
     //MARK: - addTimestamp
     @objc func addTimestamp(){
