@@ -189,6 +189,8 @@ class SecondAddPillViewController: UIViewController {
 
             
         }
+    
+    
     //MARK: - addTimestamp
     @objc func addTimestamp(){
         if timestampCount > 1 {

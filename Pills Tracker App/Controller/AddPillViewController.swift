@@ -226,6 +226,7 @@ extension AddPillViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
         selectedTabletTimestamp = timestamps[indexPath.row].title
         print(selectedTabletTimestamp)
+        doseTextField.endEditing(true)
         collectionView.reloadData()
     }
     
@@ -260,6 +261,9 @@ extension AddPillViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     
     @objc func changeScreen(){
+        nameTextField.endEditing(true)
+        doseTextField.endEditing(true)
+        areAllFieldsFilled()
         performSegue(withIdentifier: "toThirdScreen", sender: self)
     }
     
@@ -279,6 +283,24 @@ extension AddPillViewController: UICollectionViewDelegate, UICollectionViewDataS
 
 //MARK: - TextField Delegate Methods
 extension AddPillViewController: UITextFieldDelegate{
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.text == ""{
+            return
+        }
+        else {
+            if textField.placeholder! == "Name"{
+                selectedTabletName = textField.text!
+                print(selectedTabletName)
+            }
+            else {
+                selectedTabletDose = textField.text!
+                print(selectedTabletDose)
+            }
+        }
+        
+        areAllFieldsFilled()
+    }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.text == ""{
