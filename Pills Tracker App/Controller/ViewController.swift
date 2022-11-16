@@ -77,7 +77,6 @@ class ViewController: UIViewController {
         finalView.addSubview(analyticsView)
         finalView.addSubview(getVaccinatedView)
         
-        
         tableView.tableHeaderView = finalView
         
         let addButton = UIButton()
@@ -88,18 +87,13 @@ class ViewController: UIViewController {
             make.right.equalTo(view.snp.right).offset(-16)
             make.bottom.equalTo(view.snp.bottom).offset(-32)
         }
-       
     }
-    
     
     //MARK: - VC code
     
     @objc func didTapAddButton(){
         performSegue(withIdentifier: "toSecondScreen", sender: self)
-        
     }
-    
-    
 }
 
 extension ViewController: UITableViewDataSource{
@@ -113,51 +107,29 @@ extension ViewController: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath)
         return cell
     }
-    
-    
 }
+
 extension ViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0{
-            let view = UIView(frame: CGRect(x: 0, y: 0, width: 400, height: 60))
-            let textView = UILabel()
-            textView.text = "8:00"
-            textView.textColor = UIColor(named: "Dark")
-            textView.font = UIFont.boldSystemFont(ofSize: 18)
-            view.addSubview(textView)
-            textView.snp.makeConstraints { make in
-                make.left.equalTo(view.snp.left).offset(30)
-                make.top.bottom.equalTo(view)
-            }
-            view.backgroundColor = .white
-            return view
-        }
-        else {
-            let view = UIView(frame: CGRect(x: 0, y: 0, width: 400, height: 60))
-            let textView = UILabel()
-            textView.text = "18:00"
-            textView.textColor = UIColor(named: "Dark")
-            textView.font = UIFont.boldSystemFont(ofSize: 18)
-            view.addSubview(textView)
-            textView.snp.makeConstraints { make in
-                make.left.equalTo(view.snp.left).offset(30)
-                make.top.bottom.equalTo(view)
-            }
-            view.backgroundColor = .white
-            return view
+        func makeTimeText(on condition: Bool) -> String {
+            condition ? "8:00" : "18:00"
         }
         
-       
-        
-        
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 400, height: 60))
+        let textView = UILabel()
+        textView.text =  makeTimeText(on: section == 0)
+        textView.textColor = UIColor(named: "Dark")
+        textView.font = UIFont.boldSystemFont(ofSize: 18)
+        view.addSubview(textView)
+        textView.snp.makeConstraints { make in
+            make.left.equalTo(view.snp.left).offset(30)
+            make.top.bottom.equalTo(view)
+        }
+        view.backgroundColor = .white
+        return view
     }
-   
 }
-
-
-
-

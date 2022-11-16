@@ -324,7 +324,7 @@ extension AddPillViewController: UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 
-        if textField.text == ""{
+        if textField.text?.isEmpty == true{
             return false
         }
         else {

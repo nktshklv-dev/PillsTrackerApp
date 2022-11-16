@@ -14,6 +14,7 @@ class SecondAddPillViewController: UIViewController {
     var selectedTabletDose: String = ""
     var selectedTabletTimestamp: String = ""
     
+    var numberOfFields = 0
     var datePicker = UIDatePicker()
     var timeTextField = UITextField()
     var stackView = UIStackView()
@@ -25,6 +26,7 @@ class SecondAddPillViewController: UIViewController {
     var reminderStackView = UIStackView()
     var bottomButton = UIButton()
     var remindTime = ""
+    var textFields = [Int: UITextField]()
         override func viewDidLoad() {
             super.viewDidLoad()
             
@@ -152,6 +154,7 @@ class SecondAddPillViewController: UIViewController {
             reminderStackView.alignment = .fill
             reminderStackView.spacing = 32
             view.addSubview(reminderStackView)
+            
             reminderStackView.snp.makeConstraints { make in make.left.equalTo(addButton)
                 make.top.equalTo(titleLabel.snp.bottom).offset(330)
                 make.left.equalTo(view).offset(24)
@@ -194,14 +197,15 @@ class SecondAddPillViewController: UIViewController {
     
     //MARK: - addTimestamp
     @objc func addTimestamp(){
-        if timestampCount > 1 {
-            let ac = UIAlertController(title: "You can't add more than 3 timestamps with free subscription!", message: nil, preferredStyle: .alert)
+        if timeTextField.text?.isEmpty == true {
+            let ac = UIAlertController(title: "Please, set the current timestamp!", message: nil, preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .default))
             present(ac, animated: true)
-            addButton.isHidden = true
             return
         }
-        
+        if timestampCount > 0 {
+            addButton.isHidden = true
+        }
         let horStack = UIStackView()
         horStack.axis = .horizontal
         horStack.spacing = 208
@@ -215,6 +219,8 @@ class SecondAddPillViewController: UIViewController {
         timeTextField.font = UIFont.boldSystemFont(ofSize: 20)
         timeTextField.placeholder = "00:00"
         timeTextField.inputView = datePicker
+        textFields[numberOfFields] = timeTextField
+        numberOfFields += 1
         
         datePicker.datePickerMode = .time
         datePicker.preferredDatePickerStyle = .wheels
@@ -319,6 +325,8 @@ class SecondAddPillViewController: UIViewController {
                 timeTextField.font = UIFont.boldSystemFont(ofSize: 20)
                 timeTextField.placeholder = "00:00"
                 timeTextField.inputView = datePicker
+                textFields[numberOfFields] = timeTextField
+                numberOfFields += 1
                 
                 datePicker.datePickerMode = .time
                 datePicker.preferredDatePickerStyle = .wheels
@@ -341,6 +349,9 @@ class SecondAddPillViewController: UIViewController {
         @objc func doneAction(){
             getDateFromPicker()
             checkFields()
+            if timestampCount > 1 {
+                addButton.isHidden = true
+            }
             view.endEditing(true)
         }
         
@@ -348,7 +359,7 @@ class SecondAddPillViewController: UIViewController {
         func getDateFromPicker(){
             let formatter = DateFormatter()
             formatter.dateFormat = "HH:mm"
-            datePicker.timeZone = NSTimeZone.local
+            datePicker.timeZone = NSTimeZone.system
             timeTextField.text = formatter.string(from: datePicker.date)
             timestamps.append(formatter.string(from: datePicker.date))
             print(timestamps)
