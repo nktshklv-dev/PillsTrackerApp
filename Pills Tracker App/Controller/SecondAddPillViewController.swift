@@ -144,7 +144,7 @@ class SecondAddPillViewController: UIViewController {
             switcher = UISwitch()
             switcher.isOn = false
             switcher.onTintColor = UIColor(named: "Gray 4")
-            switcher.thumbTintColor = UIColor(named: "Blue")
+            switcher.thumbTintColor = UIColor(named: "Gray 1")
             switcher.addTarget(self, action: #selector(didTapswitcher), for: .touchUpInside)
             
             
@@ -250,7 +250,14 @@ class SecondAddPillViewController: UIViewController {
     @objc func didTapswitcher(_ sender: UISwitch){
         
         print("didTapswitcher, \(sender.isOn)")
-        
+        if sender.isOn{
+            sender.thumbTintColor = UIColor(named: "Blue")
+            
+        }
+        else {
+            sender.thumbTintColor = UIColor(named: "Gray 1")
+            
+        }
         UIView.animate(withDuration: 0.5 , delay: 0) {
             if sender.isOn{
                 self.reminderStackView.arrangedSubviews[1].isHidden = false
