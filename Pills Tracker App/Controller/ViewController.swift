@@ -134,21 +134,3 @@ extension ViewController: UITableViewDelegate{
         return view
     }
 }
-
-
-//MARK: - Table View extensions
-
-
-extension ViewController{
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .normal, title: ""){_,_,_ in
-            print("Swipe")
-        }
-        deleteAction.backgroundColor = .clear
-     
-        deleteAction.image = UIImage(named: "checkBox")
-        
-        let action = UISwipeActionsConfiguration(actions: [deleteAction])
-        return action
-    }
-}
