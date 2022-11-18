@@ -6,14 +6,25 @@
 //
 
 import UIKit
+import CoreData
+
 
 class SecondAddPillViewController: UIViewController {
+    
+    //CoreData context
+      let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    //CoreData prop-s
+    
     
     var selectedPicture: String = ""
     var selectedTabletName: String = ""
     var selectedTabletDose: String = ""
     var selectedTabletTimestamp: String = ""
+    var tabletDescription = ""
+    var pill = Pill()
     
+    //UI prop-s
     var numberOfFields = 0
     var datePicker = UIDatePicker()
     var timeTextField = UITextField()
@@ -34,7 +45,7 @@ class SecondAddPillViewController: UIViewController {
             backButton.addTarget(self, action: #selector(previousVC), for: .touchUpInside)
             backButton.setImage(UIImage(named: "backButton"), for: .normal)
             backButton.frame = CGRect(x: 0, y: 0, width: 30, height: 20)
-            
+            tabletDescription = selectedTabletDose + " " + selectedTabletTimestamp
             navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
             
             
@@ -242,6 +253,7 @@ class SecondAddPillViewController: UIViewController {
     }
     //MARK: - didTapBottomButton
     @objc func didTapBottomButton(){
+        createPillObject()
         navigationController?.popToRootViewController(animated: true)
         
     }
@@ -453,6 +465,23 @@ class SecondAddPillViewController: UIViewController {
         bottomButton.isUserInteractionEnabled = true
         bottomButton.setImage(UIImage(named: "doneButton"), for: .normal)
     
+    }
+    
+    func createPillObject(){
+        let newPill = Pill(context: context)
+        newPill.tabletName = selectedTabletName
+        newPill.tabletDescription = tabletDescription
+        newPill.imageName = selectedPicture
+        
+        do{
+            try self.context.save()
+        }
+        catch{
+            let ac = UIAlertController(title: "Failed to save pill", message: "Please try again!", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .cancel))
+            present(ac, animated: true)
+            print(error.localizedDescription)
+        }
     }
         
     
