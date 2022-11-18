@@ -28,10 +28,8 @@ class ViewController: UIViewController {
         initialize()
         
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
-       
-      
-        
     }
+    
     //MARK: - View init
     private func initialize(){
         greetingLabel.textColor = UIColor(named: "Gray 1")
@@ -146,6 +144,10 @@ extension ViewController: UITableViewDelegate{
         
         do{
             self.savedPills = try context.fetch(Pill.fetchRequest())
+            DispatchQueue.main.async {
+               // self.tableView.reloadData()
+                print(self.savedPills)
+            }
         }catch{
             let ac = UIAlertController(title: "Failed to fetch pills!", message: "Please, try agin!", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .cancel))

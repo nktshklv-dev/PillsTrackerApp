@@ -254,7 +254,10 @@ class SecondAddPillViewController: UIViewController {
     //MARK: - didTapBottomButton
     @objc func didTapBottomButton(){
         createPillObject()
+        let root = navigationController?.rootViewController as! ViewController
+        root.fetchRequest()
         navigationController?.popToRootViewController(animated: true)
+        
         
     }
     //MARK: - didTapswitcher
@@ -487,5 +490,13 @@ class SecondAddPillViewController: UIViewController {
     
 }
 
+
+extension UINavigationController {
+
+    var rootViewController: UIViewController? {
+        return viewControllers.first
+    }
+
+}
     
 
