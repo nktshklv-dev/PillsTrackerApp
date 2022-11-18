@@ -148,7 +148,6 @@ class SecondAddPillViewController: UIViewController {
             switcher.addTarget(self, action: #selector(didTapswitcher), for: .touchUpInside)
             
             
-            
             reminderStackView = UIStackView()
             reminderStackView.axis = .vertical
             reminderStackView.alignment = .fill
