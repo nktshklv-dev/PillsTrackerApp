@@ -10,9 +10,14 @@ import UIKit
 class ViewController: UIViewController {
 
     
-      let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet var tableView: UITableView!
+    
+    
+    var savedPills = [Pill]()
     
     let greetingLabel = UILabel()
     let dateLabel = UILabel()
@@ -133,5 +138,21 @@ extension ViewController: UITableViewDelegate{
         }
         view.backgroundColor = .white
         return view
+    }
+    
+    
+    
+    func fetchRequest(){
+        
+        do{
+            self.savedPills = try context.fetch(Pill.fetchRequest())
+        }catch{
+            let ac = UIAlertController(title: "Failed to fetch pills!", message: "Please, try agin!", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .cancel))
+            present(ac, animated: true)
+            print(error.localizedDescription)
+            fatalError()
+        }
+        
     }
 }
