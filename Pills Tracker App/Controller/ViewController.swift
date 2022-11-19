@@ -26,8 +26,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
-        
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
+        fetchRequest()
+        tableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchRequest()
+        tableView.reloadData()
     }
     
     //MARK: - View init
@@ -37,10 +44,7 @@ class ViewController: UIViewController {
         greetingLabel.font = UIFont.systemFont(ofSize: 16)
         greetingLabel.text = "Have a great day!"
         view.addSubview(greetingLabel)
-        
-     
-        
-        
+    
         dateLabel.textColor = UIColor(named: "Dark")
         dateLabel.textAlignment = .left
         dateLabel.font = UIFont.boldSystemFont(ofSize: 34)
@@ -94,23 +98,30 @@ class ViewController: UIViewController {
         }
     }
     
-    //MARK: - VC code
-    
+    //MARK: - didTapAddButton
     @objc func didTapAddButton(){
         performSegue(withIdentifier: "toSecondScreen", sender: self)
     }
 }
-
+    //MARK: - UITableViewDataSource methods
 extension ViewController: UITableViewDataSource{
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return savedPills.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
+        let currentPill = savedPills[indexPath.row]
+        let name = currentPill.tabletName ?? "New Cell"
+        let description = currentPill.tabletDescription ?? "no data"
+        let imageName = currentPill.imageName ?? "pill"
+        
+        cell.configure(name: name , description: description, imageName: imageName)
         return cell
+    
     }
 }
 

@@ -38,6 +38,7 @@ class SecondAddPillViewController: UIViewController {
     var bottomButton = UIButton()
     var remindTime = ""
     var textFields = [Int: UITextField]()
+    
         override func viewDidLoad() {
             super.viewDidLoad()
             
@@ -254,8 +255,6 @@ class SecondAddPillViewController: UIViewController {
     //MARK: - didTapBottomButton
     @objc func didTapBottomButton(){
         createPillObject()
-        let root = navigationController?.rootViewController as! ViewController
-        root.fetchRequest()
         navigationController?.popToRootViewController(animated: true)
         
         
@@ -488,15 +487,6 @@ class SecondAddPillViewController: UIViewController {
     }
         
     
-}
-
-
-extension UINavigationController {
-
-    var rootViewController: UIViewController? {
-        return viewControllers.first
-    }
-
 }
     
 
