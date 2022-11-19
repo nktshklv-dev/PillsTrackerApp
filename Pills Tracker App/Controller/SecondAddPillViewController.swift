@@ -485,8 +485,6 @@ class SecondAddPillViewController: UIViewController {
             print(error.localizedDescription)
         }
     }
-        
-    
 }
     
 

@@ -82,7 +82,7 @@ class CustomTableViewCell: UITableViewCell {
         tabletImage.image = image
         tabletImage.snp.makeConstraints { make in
             if tabletImage.image == UIImage(named: "capsule"){
-                make.left.equalTo(self.contentView.snp.left).offset(34)
+                make.left.equalTo(self.contentView.snp.left).offset(32)
                 make.top.equalTo(self.contentView.snp.top).offset(15)
             }
             else if  tabletImage.image == UIImage(named: "ampule"){
@@ -90,7 +90,7 @@ class CustomTableViewCell: UITableViewCell {
                 make.top.equalTo(self.contentView.snp.top).offset(28)
             }
             else if  tabletImage.image == UIImage(named: "pill"){
-                make.left.equalTo(self.contentView.snp.left).offset(35)
+                make.left.equalTo(self.contentView.snp.left).offset(37)
                 make.top.equalTo(self.contentView.snp.top).offset(20)
             }
             else if tabletImage.image == UIImage(named: "ing"){
