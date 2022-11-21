@@ -130,24 +130,7 @@ extension ViewController: UITableViewDelegate{
         return 120
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        func makeTimeText(on condition: Bool) -> String {
-            condition ? "8:00" : "18:00"
-        }
-        
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 400, height: 60))
-        let textView = UILabel()
-        textView.text =  makeTimeText(on: section == 0)
-        textView.textColor = UIColor(named: "Dark")
-        textView.font = UIFont.boldSystemFont(ofSize: 18)
-        view.addSubview(textView)
-        textView.snp.makeConstraints { make in
-            make.left.equalTo(view.snp.left).offset(30)
-            make.top.bottom.equalTo(view)
-        }
-        view.backgroundColor = .white
-        return view
-    }
+   
     
     
     
