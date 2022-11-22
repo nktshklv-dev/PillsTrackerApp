@@ -85,6 +85,10 @@ class CustomTableViewCell: UITableViewCell {
                 make.left.equalTo(self.contentView.snp.left).offset(32)
                 make.top.equalTo(self.contentView.snp.top).offset(15)
             }
+            else if tabletImage.image == UIImage(named: "ing"){
+                make.left.equalTo(self.contentView.snp.left).offset(57)
+                make.top.equalTo(self.contentView.snp.top).offset(36)
+            }
             else if  tabletImage.image == UIImage(named: "ampule"){
                 make.left.equalTo(self.contentView.snp.left).offset(42)
                 make.top.equalTo(self.contentView.snp.top).offset(28)
@@ -93,10 +97,7 @@ class CustomTableViewCell: UITableViewCell {
                 make.left.equalTo(self.contentView.snp.left).offset(37)
                 make.top.equalTo(self.contentView.snp.top).offset(20)
             }
-            else if tabletImage.image == UIImage(named: "ing"){
-                make.left.equalTo(self.contentView.snp.left).offset(57)
-                make.top.equalTo(self.contentView.snp.top).offset(36)
-            }
+          
         }
         
     }

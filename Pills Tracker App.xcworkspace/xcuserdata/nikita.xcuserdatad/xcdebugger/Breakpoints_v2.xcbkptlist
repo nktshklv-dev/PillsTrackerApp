@@ -440,7 +440,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "5FA39EF1-941A-4C46-9AC0-EAE096FE3209"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pills Tracker App/Controller/ViewController.swift"
@@ -456,7 +456,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "EE98A75A-4B58-4922-86F1-41DACDB1C8BC"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pills Tracker App/Controller/ViewController.swift"
@@ -472,7 +472,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "79E77FE3-869A-4C96-8E07-DF35C3F8B20E"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pills Tracker App/Controller/ViewController.swift"
@@ -513,6 +513,22 @@
             startingLineNumber = "160"
             endingLineNumber = "160"
             landmarkName = "tableView(_:trailingSwipeActionsConfigurationForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "14FC0064-7AD6-489C-95B5-2F33FCF43DD9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ViewPieces/CustomTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "configure(name:description:imageName:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
