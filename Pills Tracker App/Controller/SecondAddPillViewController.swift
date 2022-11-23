@@ -38,13 +38,20 @@ class SecondAddPillViewController: UIViewController {
     var bottomButton = UIButton()
     var remindTime = ""
     var textFields = [Int: UITextField]()
-    
+    var notificationContent: UNMutableNotificationContent!
         override func viewDidLoad() {
             super.viewDidLoad()
             
-            let content = UNMutableNotificationContent()
-            content.title = "Hey!"
-            content.body = "It's time to take your medication!"
+            let center = UNUserNotificationCenter.current()
+            
+            //UNMutableNotificationContent
+           notificationContent = UNMutableNotificationContent()
+           notificationContent.title = "Hey!"
+           notificationContent.body = "It's time to take your medication!"
+           notificationContent.badge = NSNumber(value: 1)
+           notificationContent.sound = .default
+            
+            
             
             
             let backButton = UIButton()
@@ -385,8 +392,26 @@ class SecondAddPillViewController: UIViewController {
             let formatter = DateFormatter()
             formatter.dateFormat = "HH:mm"
             datePicker.timeZone = NSTimeZone.system
+            let date = datePicker.date
+            let components = Calendar.current.dateComponents([.hour, .minute], from: date)
+            let hour = components.hour!
+            let minute = components.minute!
             timeTextField.text = formatter.string(from: datePicker.date)
             timestamps.append(formatter.string(from: datePicker.date))
+            
+            
+            //Notifications code
+            var datComp = DateComponents()
+            datComp.hour = hour
+            datComp.minute = minute
+            let trigger = UNCalendarNotificationTrigger(dateMatching: datComp, repeats: true)
+            let id = UUID().uuidString
+            let request = UNNotificationRequest(identifier: id, content: notificationContent, trigger: trigger)
+                            UNUserNotificationCenter.current().add(request) { (error : Error?) in
+                                if let theError = error {
+                                    print(theError.localizedDescription)
+                                }
+                            }
             print(timestamps)
         }
     
