@@ -22,12 +22,17 @@ class ViewController: UIViewController {
     let greetingLabel = UILabel()
     let dateLabel = UILabel()
     let planProgressView = UIView()
-    
+    var dayOfWeek: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
         fetchRequest()
+        print(Date().dayOfWeek())
+        print(Date().dayNumberOfWeek())
+        dayOfWeek = Date().dayOfWeek()
+        title = dayOfWeek
+       
         tableView.reloadData()
     }
     
@@ -50,7 +55,7 @@ class ViewController: UIViewController {
         dateLabel.font = UIFont.boldSystemFont(ofSize: 34)
         
         
-        dateLabel.text = "Thursday"
+        dateLabel.text = dayOfWeek
         view.addSubview(dateLabel)
         
         let screenHeaderView = UIView(frame: CGRect(x: 0, y: -50, width: 400, height: 100))
@@ -175,12 +180,33 @@ extension ViewController{
 
 
 extension Date {
-    func dayOfWeek() -> String? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE"
-        return dateFormatter.string(from: self).capitalized
-        // or use capitalized(with: locale) if you want
+    func dayOfWeek() -> String {
+        var dayNum = Date().dayNumberOfWeek()!
+        var dateToReturn = ""
+        switch dayNum{
+        case 1:
+            dateToReturn = "Sunday"
+        case 2:
+            dateToReturn = "Monday"
+        case 3:
+            dateToReturn = "Tuesday"
+        case 4:
+            dateToReturn = "Wednesday"
+        case 5:
+            dateToReturn = "Tuesday"
+        case 6:
+            dateToReturn = "Friday"
+        case 7:
+            dateToReturn = "Saturday"
+        default:
+            dateToReturn = "Monday"
+        }
+        return dateToReturn
+      
     }
+    func dayNumberOfWeek() -> Int? {
+        return Calendar.current.dateComponents([.weekday], from: self).weekday
+        }
 }
 
 
