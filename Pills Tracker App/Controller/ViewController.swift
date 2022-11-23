@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
         fetchRequest()
         print(Date().dayOfWeek())
-        print(Date().dayNumberOfWeek())
+        print(Date().dayNumberOfWeek()!)
         dayOfWeek = Date().dayOfWeek()
         title = dayOfWeek
        
