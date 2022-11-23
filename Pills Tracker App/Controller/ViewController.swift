@@ -200,7 +200,7 @@ extension Date {
         case 4:
             dateToReturn = "Wednesday"
         case 5:
-            dateToReturn = "Tuesday"
+            dateToReturn = "Thursday"
         case 6:
             dateToReturn = "Friday"
         case 7:
