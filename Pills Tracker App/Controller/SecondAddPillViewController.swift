@@ -7,7 +7,7 @@
 
 import UIKit
 import CoreData
-
+import UserNotifications
 
 class SecondAddPillViewController: UIViewController {
     
@@ -41,6 +41,11 @@ class SecondAddPillViewController: UIViewController {
     
         override func viewDidLoad() {
             super.viewDidLoad()
+            
+            let content = UNMutableNotificationContent()
+            content.title = "Hey!"
+            content.body = "It's time to take your medication!"
+            
             
             let backButton = UIButton()
             backButton.addTarget(self, action: #selector(previousVC), for: .touchUpInside)

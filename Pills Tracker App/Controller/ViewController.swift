@@ -6,6 +6,7 @@
 //
 import SnapKit
 import UIKit
+import UserNotifications
 
 class ViewController: UIViewController {
 
@@ -25,6 +26,11 @@ class ViewController: UIViewController {
     var dayOfWeek: String?
     override func viewDidLoad() {
         super.viewDidLoad()
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound]) { granted, error in
+        }
+        
+        
         initialize()
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
         fetchRequest()
