@@ -16,7 +16,7 @@ class SecondAddPillViewController: UIViewController {
     
     //CoreData prop-s
     
-    
+    var tabletId: String?
     var selectedPicture: String = ""
     var selectedTabletName: String = ""
     var selectedTabletDose: String = ""
@@ -84,6 +84,8 @@ class SecondAddPillViewController: UIViewController {
         }
         //MARK: - initialise!
         func initialise(){
+            tabletId = UUID().uuidString
+            
             let pageNumberLabel = UILabel()
             pageNumberLabel.text = "2 is 2"
             pageNumberLabel.font = UIFont.systemFont(ofSize: 16)
@@ -405,7 +407,7 @@ class SecondAddPillViewController: UIViewController {
             datComp.hour = hour
             datComp.minute = minute
             let trigger = UNCalendarNotificationTrigger(dateMatching: datComp, repeats: true)
-            let id = UUID().uuidString
+            let id = tabletId!
             let request = UNNotificationRequest(identifier: id, content: notificationContent, trigger: trigger)
                             UNUserNotificationCenter.current().add(request) { (error : Error?) in
                                 if let theError = error {
@@ -504,6 +506,7 @@ class SecondAddPillViewController: UIViewController {
         newPill.tabletName = selectedTabletName
         newPill.tabletDescription = tabletDescription
         newPill.imageName = selectedPicture
+        newPill.id = tabletId
         
         do{
             try self.context.save()
