@@ -134,6 +134,7 @@ extension ViewController: UITableViewDataSource{
         cell.configure(name: name , description: description, imageName: imageName)
         return cell
     
+        
     }
 }
 
