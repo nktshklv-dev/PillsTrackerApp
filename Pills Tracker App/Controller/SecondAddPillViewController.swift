@@ -402,7 +402,7 @@ class SecondAddPillViewController: UIViewController {
             timestamps.append(formatter.string(from: datePicker.date))
             
             
-            //Notifications code
+        //MARK: - Notifications code
             var datComp = DateComponents()
             datComp.hour = hour
             datComp.minute = minute

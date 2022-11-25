@@ -24,9 +24,10 @@ class ViewController: UIViewController {
     let dateLabel = UILabel()
     let planProgressView = UIView()
     var dayOfWeek: String?
+    let center = UNUserNotificationCenter.current()
     override func viewDidLoad() {
         super.viewDidLoad()
-        let center = UNUserNotificationCenter.current()
+       
         center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
         }
         
@@ -168,6 +169,9 @@ extension ViewController{
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete"){
             _,_,_ in
+            var id = self.savedPills[indexPath.row].id!
+            self.center.removePendingNotificationRequests(withIdentifiers: [id])
+            
             self.context.delete(self.savedPills[indexPath.row])
             do{
                 try self.context.save()
