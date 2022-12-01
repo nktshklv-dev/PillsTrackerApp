@@ -49,7 +49,7 @@ class AddPillViewController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
         collectionView.bounces = true
-        collectionView.frame = CGRect(x: 20, y: 450, width: 345, height: 100)
+        collectionView.frame = CGRect(x: 5, y: 450, width: 380, height: 100)
         initialise()
 
         
