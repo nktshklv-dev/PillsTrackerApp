@@ -8,6 +8,8 @@ import SnapKit
 import UIKit
 import UserNotifications
 
+//TODO: create gestures for swipe actions 
+
 class ViewController: UIViewController {
 
     

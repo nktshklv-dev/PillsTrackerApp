@@ -9,6 +9,8 @@ import UIKit
 import CoreData
 import UserNotifications
 
+//TODO: implement "remind in..." functional 
+
 class SecondAddPillViewController: UIViewController {
     
     //CoreData context
