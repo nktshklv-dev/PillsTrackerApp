@@ -18,8 +18,8 @@ class AddPillViewController: UIViewController {
     let timestamps: [TimestampsModel] = [TimestampsModel(title: "Nevermind", isSelected: true), TimestampsModel(title: "Before Meals", isSelected: false), TimestampsModel(title: "After Meals", isSelected: false), TimestampsModel(title: "With food", isSelected: false)]
     var collectionView: UICollectionView?
     var buttonsArray = [UIButton]()
-    var nameTextField = UITextField()
-    var doseTextField = UITextField()
+    var nameTextField: UITextField!
+    var doseTextField: UITextField!
     var nextScreenButton = UIButton()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +28,9 @@ class AddPillViewController: UIViewController {
         backButton.frame = CGRect(x: 0, y: 0, width: 50, height: 20)
        
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        
+        
+       
 
         
         
@@ -132,6 +135,12 @@ class AddPillViewController: UIViewController {
             make.top.equalTo(nameTextField.snp.bottom).offset(44)
             make.left.equalTo(view).offset(24)
         }
+        
+        nameTextField.tag = 0
+        nameTextField.delegate = self
+        
+        doseTextField.tag = 1
+        doseTextField.delegate = self
         
         
         
@@ -320,29 +329,15 @@ extension AddPillViewController: UITextFieldDelegate{
         areAllFieldsFilled()
     }
     
-       
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+        
+        if let nextResponder = textField.superview!.viewWithTag(nextTag) {
+            nextResponder.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
 
-        if textField.text?.isEmpty == true{
-            return false
-        }
-        else {
-            if textField.placeholder! == "Name"{
-                selectedTabletName = textField.text!
-                print(selectedTabletName)
-                nameTextField.resignFirstResponder()
-            }
-            else {
-                selectedTabletDose = textField.text!
-                print(selectedTabletDose)
-                doseTextField.resignFirstResponder()
-            }
-            
-        }
-      
-        areAllFieldsFilled()
-      
         return true
     }
 }
