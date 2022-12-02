@@ -326,6 +326,7 @@ extension AddPillViewController: UITextFieldDelegate{
             }
         }
         
+        
         areAllFieldsFilled()
     }
     
