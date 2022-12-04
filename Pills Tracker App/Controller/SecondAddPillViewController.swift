@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 import UserNotifications
 
-//TODO: implement "remind in..." functional 
+//TODO: implement "remind in..." functional
 
 class SecondAddPillViewController: UIViewController {
     
@@ -29,7 +29,7 @@ class SecondAddPillViewController: UIViewController {
     //UI prop-s
     var numberOfFields = 0
     var datePicker = UIDatePicker()
-    var timeTextField = UITextField()
+    var timeTextField: UITextField!
     var stackView = UIStackView()
     var timestampCount = 0
     var addButton = UIButton()
@@ -220,7 +220,7 @@ class SecondAddPillViewController: UIViewController {
             
         }
     
-    //TODO: - refactore code!!! using new var (Dict)
+    
     
     //MARK: - addTimestamp
     @objc func addTimestamp(){
@@ -242,6 +242,7 @@ class SecondAddPillViewController: UIViewController {
         label.textColor = UIColor(named: "Dark")
         
         timeTextField = UITextField()
+        timeTextField.isUserInteractionEnabled = false
         timeTextField.textColor = UIColor(named: "Dark")
         timeTextField.font = UIFont.boldSystemFont(ofSize: 20)
         timeTextField.placeholder = "00:00"
@@ -296,13 +297,8 @@ class SecondAddPillViewController: UIViewController {
             else {
                 self.reminderStackView.arrangedSubviews[1].isHidden = true
                 self.reminderStackView.arrangedSubviews[1].layer.opacity = 0
-                
             }
-            
-           
         }
-        
-        
     }
     
     
@@ -482,6 +478,7 @@ class SecondAddPillViewController: UIViewController {
         else {
             sender.setTitleColor(UIColor(named: "Dark"), for: .normal)
             remindTime = sender.titleLabel!.text!
+            print(remindTime)
         }
         
         checkFields()
