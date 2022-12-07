@@ -11,7 +11,7 @@ import SnapKit
 class CustomTableViewCell: UITableViewCell {
     static let identifier = "cell"
     
-    
+   
    private var tabletName: UILabel = {
         let tabletName = UILabel()
         tabletName.font = UIFont.boldSystemFont(ofSize: 20)
@@ -29,6 +29,12 @@ class CustomTableViewCell: UITableViewCell {
     private var tabletImage: UIImageView = {
         let tabletImage = UIImageView()
         return tabletImage
+    }()
+    //MARK: - acceptButton
+    private var acceptButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "acceptView"), for: .normal)
+        return button
     }()
     
 
@@ -67,8 +73,6 @@ class CustomTableViewCell: UITableViewCell {
 //            make.top.equalTo(tabletName.snp.bottom).offset(8)
 //            make.left.equalTo(tabletDescription.snp.right).offset(44)
 //        }
-        
-        
         
         view.addSubview(tabletImage)
     }
