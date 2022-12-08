@@ -34,6 +34,7 @@ class CustomTableViewCell: UITableViewCell {
     private var acceptButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "acceptView"), for: .normal)
+        button.layer.opacity = 0 
         return button
     }()
     
@@ -75,6 +76,11 @@ class CustomTableViewCell: UITableViewCell {
 //        }
         
         view.addSubview(tabletImage)
+        view.addSubview(acceptButton)
+        acceptButton.snp.makeConstraints { make in
+            make.right.equalTo(view.snp.left).offset(-12)
+            make.top.equalTo(view)
+        }
     }
     
     public func configure(name: String, description: String, imageName: String){
