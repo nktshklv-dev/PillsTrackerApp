@@ -34,7 +34,7 @@ class CustomTableViewCell: UITableViewCell {
     private var acceptButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "acceptView"), for: .normal)
-        button.layer.opacity = 0 
+        button.layer.opacity = 0
         return button
     }()
     
@@ -43,8 +43,11 @@ class CustomTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         let view = UIView(frame: CGRect(x: 30, y: 10, width: 327, height: 100))
-       
         self.contentView.addSubview(view)
+        let recognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipePerformed))
+        recognizer.direction = .right
+        view.addGestureRecognizer(recognizer)
+        
    
         view.layer.cornerRadius = 24
         view.layer.borderColor = UIColor(named: "Gray 2")?.cgColor
@@ -122,6 +125,10 @@ class CustomTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func swipePerformed(_ recognizer: UISwipeGestureRecognizer){
+        print("performed swipe action")
     }
     
   

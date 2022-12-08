@@ -430,8 +430,8 @@
             filePath = "ViewPieces/CustomTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "configure(name:description:imageName:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -496,6 +496,38 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "126"
             endingLineNumber = "126">
+            <Locations>
+               <Location
+                  uuid = "A2E19AA6-EF2B-4BF2-895C-E585532102F9 - e751f0557c3d4a7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Pills_Tracker_App.CustomTableViewCell.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Pills_Tracker_App.CustomTableViewCell&gt;"
+                  moduleName = "Pills Tracker App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikita/Desktop/Pills%20Tracker%20App/ViewPieces/CustomTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "A2E19AA6-EF2B-4BF2-895C-E585532102F9 - 39883735fa8b7f25"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Pills_Tracker_App.CustomTableViewCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Pills_Tracker_App.CustomTableViewCell&gt;"
+                  moduleName = "Pills Tracker App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikita/Desktop/Pills%20Tracker%20App/ViewPieces/CustomTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "92">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -508,8 +540,8 @@
             filePath = "ViewPieces/CustomTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "prepareForReuse()"
             landmarkType = "7">
          </BreakpointContent>
