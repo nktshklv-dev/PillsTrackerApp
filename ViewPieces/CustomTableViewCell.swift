@@ -11,8 +11,8 @@ import SnapKit
 class CustomTableViewCell: UITableViewCell {
     static let identifier = "cell"
     
-   
-   private var tabletName: UILabel = {
+    var view: UIView!
+    private var tabletName: UILabel = {
         let tabletName = UILabel()
         tabletName.font = UIFont.boldSystemFont(ofSize: 20)
         tabletName.textColor = UIColor(named: "Dark")
@@ -38,17 +38,25 @@ class CustomTableViewCell: UITableViewCell {
         return button
     }()
     
-
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        let view = UIView(frame: CGRect(x: 30, y: 10, width: 327, height: 100))
+        view = UIView(frame: .zero)
         self.contentView.addSubview(view)
+        view.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(20.0)
+            $0.trailing.equalToSuperview().offset(-20.0)
+            $0.top.equalToSuperview()
+//            $0.bottom.equalToSuperview()
+            $0.height.equalTo(100.0)
+        }
+        
         let recognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipePerformed))
         recognizer.direction = .right
         view.addGestureRecognizer(recognizer)
         
-   
+        
         view.layer.cornerRadius = 24
         view.layer.borderColor = UIColor(named: "Gray 2")?.cgColor
         view.layer.borderWidth = 0.5
@@ -60,7 +68,7 @@ class CustomTableViewCell: UITableViewCell {
             
         }
         
-       
+        
         view.addSubview(tabletDescription)
         tabletDescription.snp.makeConstraints { make in
             make.top.equalTo(tabletName.snp.bottom).offset(8)
@@ -68,21 +76,22 @@ class CustomTableViewCell: UITableViewCell {
         }
         
         //MARK: - Days Label
-//        let daysLabel = UILabel()
-//        daysLabel.textColor = UIColor(named: "Gray 1")
-//        daysLabel.text = "7 days"
-//        daysLabel.font = UIFont.systemFont(ofSize: 16)
-//        view.addSubview(daysLabel)
-//        daysLabel.snp.makeConstraints { make in
-//            make.top.equalTo(tabletName.snp.bottom).offset(8)
-//            make.left.equalTo(tabletDescription.snp.right).offset(44)
-//        }
+        //        let daysLabel = UILabel()
+        //        daysLabel.textColor = UIColor(named: "Gray 1")
+        //        daysLabel.text = "7 days"
+        //        daysLabel.font = UIFont.systemFont(ofSize: 16)
+        //        view.addSubview(daysLabel)
+        //        daysLabel.snp.makeConstraints { make in
+        //            make.top.equalTo(tabletName.snp.bottom).offset(8)
+        //            make.left.equalTo(tabletDescription.snp.right).offset(44)
+        //        }
         
         view.addSubview(tabletImage)
         view.addSubview(acceptButton)
         acceptButton.snp.makeConstraints { make in
             make.right.equalTo(view.snp.left).offset(-12)
             make.top.equalTo(view)
+            make.height.equalTo(100)
         }
     }
     
@@ -107,12 +116,10 @@ class CustomTableViewCell: UITableViewCell {
                 make.top.equalTo(self.contentView.snp.top).offset(28)
             }
             else if  tabletImage.image == UIImage(named: "pill"){
-                make.left.equalTo(self.contentView.snp.left).offset(37)
-                make.top.equalTo(self.contentView.snp.top).offset(20)
+                make.left.equalTo(view.snp.left).offset(17)
+                make.top.equalTo(view.snp.top).offset(20)
             }
-          
         }
-        
     }
     
     override func prepareForReuse() {
@@ -127,10 +134,26 @@ class CustomTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - ??????????????????
     @objc func swipePerformed(_ recognizer: UISwipeGestureRecognizer){
         print("performed swipe action")
+        
+        UIView.animate(withDuration: 1) { [weak self] in
+            guard let self else { return }
+            self.acceptButton.layer.opacity = 1
+            self.view.snp.updateConstraints {
+                $0.leading.equalToSuperview().offset(95.0)
+            }
+            
+            self.contentView.layoutIfNeeded()
+            
+            
+            //            self.view.snp.updateConstraints { make in
+            //                make.leading.equalToSuperview().offset(80.0)
+            //            }
+        }
     }
     
-  
+    
     
 }
