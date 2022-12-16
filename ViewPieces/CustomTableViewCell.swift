@@ -44,6 +44,7 @@ class CustomTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         view = UIView(frame: .zero)
         self.contentView.addSubview(view)
+        // -
         view.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(20.0)
             $0.trailing.equalToSuperview().offset(-20.0)
@@ -116,8 +117,8 @@ class CustomTableViewCell: UITableViewCell {
                 make.top.equalTo(self.contentView.snp.top).offset(28)
             }
             else if  tabletImage.image == UIImage(named: "pill"){
-                make.left.equalTo(view.snp.left).offset(17)
-                make.top.equalTo(view.snp.top).offset(20)
+                make.left.equalTo(view.snp.left).offset(8)
+                make.top.equalTo(view.snp.top).offset(10)
             }
         }
     }
@@ -134,11 +135,11 @@ class CustomTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - ??????????????????
     @objc func swipePerformed(_ recognizer: UISwipeGestureRecognizer){
         print("performed swipe action")
         
-        UIView.animate(withDuration: 1) { [weak self] in
+        UIView.animate(withDuration: 0.15
+) { [weak self] in
             guard let self else { return }
             self.acceptButton.layer.opacity = 1
             self.view.snp.updateConstraints {
