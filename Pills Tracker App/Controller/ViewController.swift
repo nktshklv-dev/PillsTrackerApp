@@ -167,30 +167,7 @@ extension ViewController: UITableViewDelegate{
         
     }
 }
-extension ViewController{
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete"){
-            _,_,_ in
-            var id = self.savedPills[indexPath.row].id!
-            self.center.removePendingNotificationRequests(withIdentifiers: [id])
-            
-            self.context.delete(self.savedPills[indexPath.row])
-            do{
-                try self.context.save()
-            }
-            catch{
-                let ac = UIAlertController(title: "Failed to remove pill", message: "Please try again!", preferredStyle: .alert)
-                ac.addAction(UIAlertAction(title: "OK", style: .cancel))
-                self.present(ac, animated: true)
-                print(error.localizedDescription)
-            }
-            self.fetchRequest()
-        }
-        
-        let action = UISwipeActionsConfiguration(actions: [deleteAction])
-        return action
-    }
-}
+
 
 
 extension Date {

@@ -398,8 +398,8 @@
             filePath = "Pills Tracker App/Controller/SecondAddPillViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "511"
-            endingLineNumber = "511"
+            startingLineNumber = "510"
+            endingLineNumber = "510"
             landmarkName = "createPillObject()"
             landmarkType = "7">
          </BreakpointContent>
@@ -414,8 +414,8 @@
             filePath = "Pills Tracker App/Controller/SecondAddPillViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "504"
-            endingLineNumber = "504"
+            startingLineNumber = "503"
+            endingLineNumber = "503"
             landmarkName = "createPillObject()"
             landmarkType = "7">
          </BreakpointContent>
@@ -430,8 +430,8 @@
             filePath = "ViewPieces/CustomTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "configure(name:description:imageName:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -494,8 +494,8 @@
             filePath = "ViewPieces/CustomTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "prepareForReuse()"
             landmarkType = "7">
          </BreakpointContent>
@@ -513,6 +513,22 @@
             startingLineNumber = "470"
             endingLineNumber = "470"
             landmarkName = "didTapTimeButton(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D5C1ED2A-FDC4-4991-9374-1F3553DEC389"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ViewPieces/CustomTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "configure(name:description:imageName:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

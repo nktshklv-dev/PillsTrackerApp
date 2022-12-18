@@ -7,9 +7,10 @@
 
 import UIKit
 import SnapKit
+import CoreHaptics
 
 class CustomTableViewCell: UITableViewCell {
-    static let identifier = "cell"
+    static let identifier = String(describing: CustomTableViewCell.self)
     
     var view: UIView!
     private var tabletName: UILabel = {
@@ -37,25 +38,26 @@ class CustomTableViewCell: UITableViewCell {
         button.layer.opacity = 0
         return button
     }()
-    
-    
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         view = UIView(frame: .zero)
         self.contentView.addSubview(view)
-        // -
+        
         view.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(20.0)
             $0.trailing.equalToSuperview().offset(-20.0)
             $0.top.equalToSuperview()
-//            $0.bottom.equalToSuperview()
             $0.height.equalTo(100.0)
         }
         
-        let recognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipePerformed))
-        recognizer.direction = .right
-        view.addGestureRecognizer(recognizer)
+        let rightSwipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(rightSwipePerformed))
+        rightSwipeRecognizer.direction = .right
+        view.addGestureRecognizer(rightSwipeRecognizer)
+        
+        let leftSwipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(leftSwipePerformed))
+        leftSwipeRecognizer.direction = .left
+        view.addGestureRecognizer(leftSwipeRecognizer)
         
         
         view.layer.cornerRadius = 24
@@ -75,18 +77,6 @@ class CustomTableViewCell: UITableViewCell {
             make.top.equalTo(tabletName.snp.bottom).offset(8)
             make.left.equalTo(tabletName.snp.left)
         }
-        
-        //MARK: - Days Label
-        //        let daysLabel = UILabel()
-        //        daysLabel.textColor = UIColor(named: "Gray 1")
-        //        daysLabel.text = "7 days"
-        //        daysLabel.font = UIFont.systemFont(ofSize: 16)
-        //        view.addSubview(daysLabel)
-        //        daysLabel.snp.makeConstraints { make in
-        //            make.top.equalTo(tabletName.snp.bottom).offset(8)
-        //            make.left.equalTo(tabletDescription.snp.right).offset(44)
-        //        }
-        
         view.addSubview(tabletImage)
         view.addSubview(acceptButton)
         acceptButton.snp.makeConstraints { make in
@@ -105,16 +95,16 @@ class CustomTableViewCell: UITableViewCell {
         tabletImage.image = image
         tabletImage.snp.makeConstraints { make in
             if tabletImage.image == UIImage(named: "capsule"){
-                make.left.equalTo(self.contentView.snp.left).offset(32)
-                make.top.equalTo(self.contentView.snp.top).offset(15)
+                make.left.equalTo(view.snp.left).offset(2)
+                make.top.equalTo(view.snp.top).offset(7)
             }
             else if tabletImage.image == UIImage(named: "ing"){
-                make.left.equalTo(self.contentView.snp.left).offset(57)
-                make.top.equalTo(self.contentView.snp.top).offset(36)
+                make.left.equalTo(view.snp.left).offset(8)
+                make.top.equalTo(view.snp.top).offset(10)
             }
-            else if  tabletImage.image == UIImage(named: "ampule"){
-                make.left.equalTo(self.contentView.snp.left).offset(42)
-                make.top.equalTo(self.contentView.snp.top).offset(28)
+            else if tabletImage.image == UIImage(named: "ampule"){
+                make.left.equalTo(view.snp.left).offset(12)
+                make.top.equalTo(view.snp.top).offset(30)
             }
             else if  tabletImage.image == UIImage(named: "pill"){
                 make.left.equalTo(view.snp.left).offset(8)
@@ -135,11 +125,10 @@ class CustomTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc func swipePerformed(_ recognizer: UISwipeGestureRecognizer){
-        print("performed swipe action")
+    @objc func rightSwipePerformed(_ recognizer: UISwipeGestureRecognizer){
+        print("performed right swipe action")
         
-        UIView.animate(withDuration: 0.15
-) { [weak self] in
+        UIView.animate(withDuration: 0.2) { [weak self] in
             guard let self else { return }
             self.acceptButton.layer.opacity = 1
             self.view.snp.updateConstraints {
@@ -147,11 +136,20 @@ class CustomTableViewCell: UITableViewCell {
             }
             
             self.contentView.layoutIfNeeded()
+        }
+    }
+    
+    @objc func leftSwipePerformed(_ recognizer: UISwipeGestureRecognizer){
+        print("performed left swipe action")
+        
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            guard let self else { return }
+            self.acceptButton.layer.opacity = 0.0
+            self.view.snp.updateConstraints {
+                $0.leading.equalToSuperview().offset(20.0)
+            }
             
-            
-            //            self.view.snp.updateConstraints { make in
-            //                make.leading.equalToSuperview().offset(80.0)
-            //            }
+            self.contentView.layoutIfNeeded()
         }
     }
     
