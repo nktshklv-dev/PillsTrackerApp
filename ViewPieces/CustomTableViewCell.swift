@@ -12,6 +12,8 @@ import CoreHaptics
 class CustomTableViewCell: UITableViewCell {
     static let identifier = String(describing: CustomTableViewCell.self)
     
+    var isShowingAcceptView = false
+    var isShowingDeleteView = false
     var view: UIView!
     private var tabletName: UILabel = {
         let tabletName = UILabel()
@@ -33,10 +35,20 @@ class CustomTableViewCell: UITableViewCell {
     }()
     //MARK: - acceptButton
     private var acceptButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 72, height: 100))
         button.setImage(UIImage(named: "acceptView"), for: .normal)
         button.layer.opacity = 0
+        button.isUserInteractionEnabled = true
         return button
+    }()
+    
+    private var deleteButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 72, height: 100))
+        button.setImage(UIImage(named: "deletePill"), for: .normal)
+        button.layer.opacity = 0
+        button.isUserInteractionEnabled = true
+        return button
+        
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -51,13 +63,23 @@ class CustomTableViewCell: UITableViewCell {
             $0.height.equalTo(100.0)
         }
         
-        let rightSwipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(rightSwipePerformed))
-        rightSwipeRecognizer.direction = .right
-        view.addGestureRecognizer(rightSwipeRecognizer)
+      
+    
+        let leftDeleteSwipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(leftDeleteSwipePerformed))
+        leftDeleteSwipeRecognizer.direction = .left
+        view.addGestureRecognizer(leftDeleteSwipeRecognizer)
         
-        let leftSwipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(leftSwipePerformed))
-        leftSwipeRecognizer.direction = .left
-        view.addGestureRecognizer(leftSwipeRecognizer)
+        let rightDeleteSwipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(rightDeleteSwipePerformed))
+        rightDeleteSwipeRecognizer.direction = .right
+        view.addGestureRecognizer(rightDeleteSwipeRecognizer)
+        
+        let rightAcceptSwipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(rightAcceptSwipePerformed))
+        rightAcceptSwipeRecognizer.direction = .right
+        view.addGestureRecognizer(rightAcceptSwipeRecognizer)
+        
+        let leftAcceptSwipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(leftAcceptSwipePerformed))
+        leftAcceptSwipeRecognizer.direction = .left
+        view.addGestureRecognizer(leftAcceptSwipeRecognizer)
         
         
         view.layer.cornerRadius = 24
@@ -78,12 +100,22 @@ class CustomTableViewCell: UITableViewCell {
             make.left.equalTo(tabletName.snp.left)
         }
         view.addSubview(tabletImage)
-        view.addSubview(acceptButton)
+        
+        contentView.addSubview(acceptButton)
+        acceptButton.addTarget(self, action: #selector(acceptButtonPressed), for: .touchUpInside)
         acceptButton.snp.makeConstraints { make in
             make.right.equalTo(view.snp.left).offset(-12)
             make.top.equalTo(view)
             make.height.equalTo(100)
         }
+        
+        contentView.addSubview(deleteButton)
+        deleteButton.snp.makeConstraints { make in
+            make.left.equalTo(view.snp.right).offset(12)
+            make.top.equalTo(view)
+            make.height.equalTo(100)
+        }
+        
     }
     
     public func configure(name: String, description: String, imageName: String){
@@ -125,24 +157,39 @@ class CustomTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc func rightSwipePerformed(_ recognizer: UISwipeGestureRecognizer){
-        print("performed right swipe action")
+    @objc func rightAcceptSwipePerformed(_ recognizer: UISwipeGestureRecognizer){
+        print("accept RIGHT")
+        acceptButton.setImage(UIImage(named: "acceptView"), for: .normal)
         
         UIView.animate(withDuration: 0.3) { [weak self] in
             guard let self else { return }
+            
             self.acceptButton.layer.opacity = 1
             self.view.snp.updateConstraints {
                 $0.leading.equalToSuperview().offset(95.0)
             }
-            
+
             self.contentView.layoutIfNeeded()
         }
     }
     
-    @objc func leftSwipePerformed(_ recognizer: UISwipeGestureRecognizer){
-        print("performed left swipe action")
-        
+    @objc func leftAcceptSwipePerformed(_ recognizer: UISwipeGestureRecognizer){
+        print("accept LEFT")
         UIView.animate(withDuration: 0.3) { [weak self] in
+            guard let self else { return }
+            self.acceptButton.layer.opacity = 0.0
+            self.view.snp.updateConstraints {
+                $0.leading.equalToSuperview().offset(20.0)
+            }
+
+            self.contentView.layoutIfNeeded()
+        }
+    }
+    
+    @objc func acceptButtonPressed(){
+        
+        UIView.animate(withDuration: 0.4) { [weak self] in
+            self?.acceptButton.setImage(UIImage(named: "tappedAcceptView"), for: .normal)
             guard let self else { return }
             self.acceptButton.layer.opacity = 0.0
             self.view.snp.updateConstraints {
@@ -151,7 +198,40 @@ class CustomTableViewCell: UITableViewCell {
             
             self.contentView.layoutIfNeeded()
         }
+        
     }
+    
+    @objc func leftDeleteSwipePerformed(){
+        acceptButton.setImage(UIImage(named: "deletePill"), for: .normal)
+        print("delete LEFT")
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            guard let self else { return }
+            
+            self.acceptButton.layer.opacity = 1
+            self.view.snp.updateConstraints {
+                $0.trailing.equalToSuperview().offset(-95.0)
+            }
+
+            self.contentView.layoutIfNeeded()
+        }
+    }
+    
+    @objc func rightDeleteSwipePerformed(){
+        acceptButton.setImage(UIImage(named: "deletePill"), for: .normal)
+        print("delete RIGHT")
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            guard let self else { return }
+            
+            self.acceptButton.layer.opacity = 1
+            self.view.snp.updateConstraints {
+                $0.trailing.equalToSuperview().offset(20.0)
+            }
+
+            self.contentView.layoutIfNeeded()
+        }
+    }
+    
+     
     
     
     

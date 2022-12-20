@@ -476,7 +476,7 @@ class SecondAddPillViewController: UIViewController {
             
         }
         else {
-            sender.setTitleColor(UIColor(named: "Dark"), for: .normal)
+//            sender.setTitleColor(UIColor(named: "Dark"), for: .normal)
             remindTime = sender.titleLabel!.text!
             print(remindTime)
         }
