@@ -492,7 +492,6 @@ class SecondAddPillViewController: UIViewController {
         guard !selectedTabletName.isEmpty else {return}
         guard !selectedTabletDose.isEmpty else {return}
         guard !selectedTabletTimestamp.isEmpty else {return}
-        
         guard !timestamps.isEmpty else {return}
     
         bottomButton.isUserInteractionEnabled = true

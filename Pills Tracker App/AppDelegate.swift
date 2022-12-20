@@ -79,3 +79,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+class Images {
+    
+    
+    static let shared = Images()
+    
+    private init(){}
+    
+    
+    
+    
+}

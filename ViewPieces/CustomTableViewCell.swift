@@ -128,7 +128,7 @@ class CustomTableViewCell: UITableViewCell {
     @objc func rightSwipePerformed(_ recognizer: UISwipeGestureRecognizer){
         print("performed right swipe action")
         
-        UIView.animate(withDuration: 0.2) { [weak self] in
+        UIView.animate(withDuration: 0.3) { [weak self] in
             guard let self else { return }
             self.acceptButton.layer.opacity = 1
             self.view.snp.updateConstraints {
@@ -142,7 +142,7 @@ class CustomTableViewCell: UITableViewCell {
     @objc func leftSwipePerformed(_ recognizer: UISwipeGestureRecognizer){
         print("performed left swipe action")
         
-        UIView.animate(withDuration: 0.2) { [weak self] in
+        UIView.animate(withDuration: 0.3) { [weak self] in
             guard let self else { return }
             self.acceptButton.layer.opacity = 0.0
             self.view.snp.updateConstraints {
