@@ -12,8 +12,8 @@ import CoreHaptics
 class CustomTableViewCell: UITableViewCell {
     static let identifier = String(describing: CustomTableViewCell.self)
     
-    var isShowingAcceptView = false
-    var isShowingDeleteView = false
+    private var isShowingAcceptView = false
+    private var isShowingDeleteView = false
     var view: UIView!
     private var tabletName: UILabel = {
         let tabletName = UILabel()
@@ -37,6 +37,7 @@ class CustomTableViewCell: UITableViewCell {
     private var acceptButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 72, height: 100))
         button.setImage(UIImage(named: "acceptView"), for: .normal)
+        button.setImage(UIImage(named: "tappedAcceptView"), for: .highlighted)
         button.layer.opacity = 0
         button.isUserInteractionEnabled = true
         return button
@@ -44,7 +45,8 @@ class CustomTableViewCell: UITableViewCell {
     
     private var deleteButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 72, height: 100))
-        button.setImage(UIImage(named: "deletePill"), for: .normal)
+        button.setImage(UIImage(named: "redDeleteButton"), for: .normal)
+        button.setImage(UIImage(named: "tappedRedDeleteButton"), for: .highlighted)
         button.layer.opacity = 0
         button.isUserInteractionEnabled = true
         return button
@@ -110,6 +112,7 @@ class CustomTableViewCell: UITableViewCell {
         }
         
         contentView.addSubview(deleteButton)
+        deleteButton.addTarget(self, action: #selector(deleteButtonPressed), for: .touchUpInside)
         deleteButton.snp.makeConstraints { make in
             make.left.equalTo(view.snp.right).offset(12)
             make.top.equalTo(view)
@@ -157,8 +160,13 @@ class CustomTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc func rightAcceptSwipePerformed(_ recognizer: UISwipeGestureRecognizer){
+    @objc func rightAcceptSwipePerformed(){
         print("accept RIGHT")
+        guard !isShowingDeleteView else {
+            rightDeleteSwipePerformed()
+            return
+        }
+        isShowingAcceptView = true
         acceptButton.setImage(UIImage(named: "acceptView"), for: .normal)
         
         UIView.animate(withDuration: 0.3) { [weak self] in
@@ -173,8 +181,14 @@ class CustomTableViewCell: UITableViewCell {
         }
     }
     
-    @objc func leftAcceptSwipePerformed(_ recognizer: UISwipeGestureRecognizer){
+    @objc func leftAcceptSwipePerformed(){
         print("accept LEFT")
+        print(isShowingAcceptView, isShowingDeleteView)
+        guard !isShowingDeleteView && isShowingAcceptView else {
+            leftDeleteSwipePerformed()
+            return
+        }
+        isShowingAcceptView = false
         UIView.animate(withDuration: 0.3) { [weak self] in
             guard let self else { return }
             self.acceptButton.layer.opacity = 0.0
@@ -202,12 +216,17 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     @objc func leftDeleteSwipePerformed(){
-        acceptButton.setImage(UIImage(named: "deletePill"), for: .normal)
+        guard !isShowingAcceptView else {
+            leftAcceptSwipePerformed()
+            return
+        }
+        isShowingDeleteView = true
+        self.deleteButton.setImage(UIImage(named: "redDeleteButton"), for: .normal)
         print("delete LEFT")
         UIView.animate(withDuration: 0.3) { [weak self] in
             guard let self else { return }
             
-            self.acceptButton.layer.opacity = 1
+            self.deleteButton.layer.opacity = 1
             self.view.snp.updateConstraints {
                 $0.trailing.equalToSuperview().offset(-95.0)
             }
@@ -217,18 +236,33 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     @objc func rightDeleteSwipePerformed(){
-        acceptButton.setImage(UIImage(named: "deletePill"), for: .normal)
+        isShowingDeleteView = false
         print("delete RIGHT")
         UIView.animate(withDuration: 0.3) { [weak self] in
             guard let self else { return }
             
-            self.acceptButton.layer.opacity = 1
+            self.deleteButton.layer.opacity = 0
             self.view.snp.updateConstraints {
-                $0.trailing.equalToSuperview().offset(20.0)
+                $0.trailing.equalToSuperview().offset(-20.0)
             }
 
             self.contentView.layoutIfNeeded()
         }
+    }
+    
+    @objc func deleteButtonPressed(){
+        
+        UIView.animate(withDuration: 0.4) { [weak self] in
+            self?.deleteButton.setImage(UIImage(named: "tappedRedDeleteButton"), for: .normal)
+            guard let self else { return }
+            self.deleteButton.layer.opacity = 0.0
+            self.view.snp.updateConstraints {
+                $0.trailing.equalToSuperview().offset(-20.0)
+            }
+            
+            self.contentView.layoutIfNeeded()
+        }
+        
     }
     
      
