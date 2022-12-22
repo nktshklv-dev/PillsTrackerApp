@@ -10,7 +10,7 @@ import UserNotifications
 
 class ViewController: UIViewController, DidSwipeCellDelegate {
 
-    
+    //TODO: - create an array of cells, when delegate method is called, deswipe(deselect) other cells except selected one 
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
