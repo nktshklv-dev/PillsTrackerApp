@@ -9,7 +9,6 @@ import UIKit
 
 class CustomCollectionViewCell: UICollectionViewCell {
     static let identifier = "CustomCollectionViewCell"
-    
     private var isChosen: Bool = false
     public let myLabel: UILabel = {
         let label = UILabel()
@@ -58,6 +57,5 @@ class CustomCollectionViewCell: UICollectionViewCell {
                 self.isChosen = !isChosen
             }
     }
-    
     
 }

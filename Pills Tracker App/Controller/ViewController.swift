@@ -10,9 +10,8 @@ import UserNotifications
 
 //TODO: create gestures for swipe actions 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, DidSwipeCellDelegate {
 
-    
     
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -29,7 +28,7 @@ class ViewController: UIViewController {
     let center = UNUserNotificationCenter.current()
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
         }
         
@@ -41,7 +40,7 @@ class ViewController: UIViewController {
         print(Date().dayNumberOfWeek()!)
         dayOfWeek = Date().dayOfWeek()
         title = dayOfWeek
-       
+        
         tableView.reloadData()
     }
     
@@ -59,7 +58,7 @@ class ViewController: UIViewController {
         greetingLabel.font = UIFont.systemFont(ofSize: 16)
         greetingLabel.text = "Have a great day!"
         view.addSubview(greetingLabel)
-    
+        
         dateLabel.textColor = UIColor(named: "Dark")
         dateLabel.textAlignment = .left
         dateLabel.font = UIFont.boldSystemFont(ofSize: 34)
@@ -84,11 +83,11 @@ class ViewController: UIViewController {
             make.right.equalTo(screenHeaderView).offset(-206)
         }
         
-//        view.addSubview(screenHeaderView)
-      
+        //        view.addSubview(screenHeaderView)
         
         
-
+        
+        
         let analyticsView = setupAnalyticsView()
         view.addSubview(analyticsView)
         analyticsView.frame = CGRect(x: 30, y: 0, width: 327, height: 126)
@@ -117,8 +116,13 @@ class ViewController: UIViewController {
     @objc func didTapAddButton(){
         performSegue(withIdentifier: "toSecondScreen", sender: self)
     }
+    //MARK: - Delegate Methods
+    func didSwipedCell(cell: CustomTableViewCell, direction: Direction) {
+        print("swiped: ", cell, direction)
+    }
+    
 }
-    //MARK: - UITableViewDataSource methods
+//MARK: - UITableViewDataSource methods
 extension ViewController: UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -133,10 +137,11 @@ extension ViewController: UITableViewDataSource{
         let name = currentPill.tabletName ?? "New Cell"
         let description = currentPill.tabletDescription ?? "no data"
         let imageName = currentPill.imageName ?? "pill"
-        
+        cell.delegate = self
         cell.configure(name: name , description: description, imageName: imageName)
+        
         return cell
-    
+        
         
         
     }
@@ -147,7 +152,7 @@ extension ViewController: UITableViewDelegate{
         return 120
     }
     
-   
+    
     
     
     
@@ -194,11 +199,11 @@ extension Date {
             dateToReturn = "Monday"
         }
         return dateToReturn
-      
+        
     }
     func dayNumberOfWeek() -> Int? {
         return Calendar.current.dateComponents([.weekday], from: self).weekday
-        }
+    }
 }
 
 

@@ -8,10 +8,14 @@
 import UIKit
 import SnapKit
 import CoreHaptics
-//MARK: - Add methods to deselect(deswipe) other cells when we swipe one cell 
+//TODO: - Add methods to deselect(deswipe) other cells when we swipe one cell
+enum Direction{
+    case rightAccept
+    case leftDelete
+}
 class CustomTableViewCell: UITableViewCell {
     static let identifier = String(describing: CustomTableViewCell.self)
-    
+    public var delegate: DidSwipeCellDelegate? = nil
     private var isShowingAcceptView = false
     private var isShowingDeleteView = false
     var view: UIView!
@@ -52,7 +56,7 @@ class CustomTableViewCell: UITableViewCell {
         return button
         
     }()
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         view = UIView(frame: .zero)
@@ -65,8 +69,8 @@ class CustomTableViewCell: UITableViewCell {
             $0.height.equalTo(100.0)
         }
         
-      
-    
+        
+        
         let leftDeleteSwipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(leftDeleteSwipePerformed))
         leftDeleteSwipeRecognizer.direction = .left
         view.addGestureRecognizer(leftDeleteSwipeRecognizer)
@@ -166,6 +170,7 @@ class CustomTableViewCell: UITableViewCell {
             rightDeleteSwipePerformed()
             return
         }
+        delegateCall(cell: self, direction: .rightAccept)
         isShowingAcceptView = true
         acceptButton.setImage(UIImage(named: "acceptView"), for: .normal)
         
@@ -176,7 +181,7 @@ class CustomTableViewCell: UITableViewCell {
             self.view.snp.updateConstraints {
                 $0.leading.equalToSuperview().offset(95.0)
             }
-
+            
             self.contentView.layoutIfNeeded()
         }
     }
@@ -195,7 +200,7 @@ class CustomTableViewCell: UITableViewCell {
             self.view.snp.updateConstraints {
                 $0.leading.equalToSuperview().offset(20.0)
             }
-
+            
             self.contentView.layoutIfNeeded()
         }
     }
@@ -220,6 +225,7 @@ class CustomTableViewCell: UITableViewCell {
             leftAcceptSwipePerformed()
             return
         }
+        delegateCall(cell: self, direction: .leftDelete)
         isShowingDeleteView = true
         self.deleteButton.setImage(UIImage(named: "redDeleteButton"), for: .normal)
         print("delete LEFT")
@@ -230,7 +236,7 @@ class CustomTableViewCell: UITableViewCell {
             self.view.snp.updateConstraints {
                 $0.trailing.equalToSuperview().offset(-95.0)
             }
-
+            
             self.contentView.layoutIfNeeded()
         }
     }
@@ -245,7 +251,7 @@ class CustomTableViewCell: UITableViewCell {
             self.view.snp.updateConstraints {
                 $0.trailing.equalToSuperview().offset(-20.0)
             }
-
+            
             self.contentView.layoutIfNeeded()
         }
     }
@@ -265,8 +271,11 @@ class CustomTableViewCell: UITableViewCell {
         
     }
     
-     
-    
-    
+    private func delegateCall(cell: CustomTableViewCell, direction: Direction){
+        guard var delegate = delegate else { print("no delegate found")
+            return
+        }
+        delegate.didSwipedCell(cell: cell, direction: direction)
+    }
     
 }
