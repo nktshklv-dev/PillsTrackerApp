@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 import CoreHaptics
-
+//MARK: - Add methods to deselect(deswipe) other cells when we swipe one cell 
 class CustomTableViewCell: UITableViewCell {
     static let identifier = String(describing: CustomTableViewCell.self)
     
