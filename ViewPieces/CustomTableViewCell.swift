@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 import CoreHaptics
-//TODO: - Add methods to deselect(deswipe) other cells when we swipe one cell
+
 enum Direction{
     case rightAccept
     case leftDelete
