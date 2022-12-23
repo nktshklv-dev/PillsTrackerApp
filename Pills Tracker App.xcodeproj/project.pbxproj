@@ -13,7 +13,6 @@
 		112AB43828FE9A98006283AD /* SecondAddPillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112AB43728FE9A98006283AD /* SecondAddPillViewController.swift */; };
 		1135BEDD2901F1310000CBD1 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1135BEDC2901F1310000CBD1 /* CustomButton.swift */; };
 		11689E8128F89B4F00040DAE /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11689E8028F89B4F00040DAE /* CustomTableViewCell.swift */; };
-		11C110D129550C04000C9DB5 /* SwipeCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C110D029550C04000C9DB5 /* SwipeCellProtocol.swift */; };
 		11C1B21128F3F1C9004D6428 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1B21028F3F1C9004D6428 /* AppDelegate.swift */; };
 		11C1B21328F3F1C9004D6428 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1B21228F3F1C9004D6428 /* SceneDelegate.swift */; };
 		11C1B21528F3F1C9004D6428 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1B21428F3F1C9004D6428 /* ViewController.swift */; };
@@ -34,7 +33,6 @@
 		112AB43728FE9A98006283AD /* SecondAddPillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondAddPillViewController.swift; sourceTree = "<group>"; };
 		1135BEDC2901F1310000CBD1 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		11689E8028F89B4F00040DAE /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
-		11C110D029550C04000C9DB5 /* SwipeCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwipeCellProtocol.swift; path = "/Users/nikita/Desktop/Pills Tracker App/Pills Tracker App/Controller/SwipeCellProtocol.swift"; sourceTree = "<absolute>"; };
 		11C1B20D28F3F1C9004D6428 /* Pills Tracker App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pills Tracker App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11C1B21028F3F1C9004D6428 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11C1B21228F3F1C9004D6428 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,7 +109,6 @@
 		11C110D229550C16000C9DB5 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				11C110D029550C04000C9DB5 /* SwipeCellProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -300,7 +297,6 @@
 				11C1B21528F3F1C9004D6428 /* ViewController.swift in Sources */,
 				11C1B22E28F5C03A004D6428 /* RoundedProgressBar.swift in Sources */,
 				11181C7D290DCFAF00CC41AF /* CustomCollectionViewCell.swift in Sources */,
-				11C110D129550C04000C9DB5 /* SwipeCellProtocol.swift in Sources */,
 				112AB43628FE99D8006283AD /* AddPillViewController.swift in Sources */,
 				11689E8128F89B4F00040DAE /* CustomTableViewCell.swift in Sources */,
 				11C1B21B28F3F1C9004D6428 /* Pills_Tracker_App.xcdatamodeld in Sources */,

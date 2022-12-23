@@ -8,7 +8,7 @@ import SnapKit
 import UIKit
 import UserNotifications
 
-class ViewController: UIViewController, DidSwipeCellDelegate {
+class ViewController: UIViewController{
 
     //TODO: - create an array of cells, when delegate method is called, deswipe(deselect) other cells except selected one 
     
@@ -18,7 +18,6 @@ class ViewController: UIViewController, DidSwipeCellDelegate {
     
     
     var savedPills = [Pill]()
-    
     let greetingLabel = UILabel()
     let dateLabel = UILabel()
     let planProgressView = UIView()
@@ -115,9 +114,7 @@ class ViewController: UIViewController, DidSwipeCellDelegate {
         performSegue(withIdentifier: "toSecondScreen", sender: self)
     }
     //MARK: - Delegate Methods
-    func didSwipedCell(cell: CustomTableViewCell, direction: Direction) {
-        print("swiped: ", cell, direction)
-    }
+    
     
 }
 //MARK: - UITableViewDataSource methods
@@ -135,7 +132,6 @@ extension ViewController: UITableViewDataSource{
         let name = currentPill.tabletName ?? "New Cell"
         let description = currentPill.tabletDescription ?? "no data"
         let imageName = currentPill.imageName ?? "pill"
-        cell.delegate = self
         cell.configure(name: name , description: description, imageName: imageName)
         
         return cell

@@ -15,9 +15,8 @@ enum Direction{
 }
 class CustomTableViewCell: UITableViewCell {
     static let identifier = String(describing: CustomTableViewCell.self)
-    public var delegate: DidSwipeCellDelegate? = nil
-    private var isShowingAcceptView = false
-    private var isShowingDeleteView = false
+    public var isShowingAcceptView = false
+    public var isShowingDeleteView = false
     var view: UIView!
     private var tabletName: UILabel = {
         let tabletName = UILabel()
@@ -170,7 +169,7 @@ class CustomTableViewCell: UITableViewCell {
             rightDeleteSwipePerformed()
             return
         }
-        delegateCall(cell: self, direction: .rightAccept)
+        
         isShowingAcceptView = true
         acceptButton.setImage(UIImage(named: "acceptView"), for: .normal)
         
@@ -225,7 +224,7 @@ class CustomTableViewCell: UITableViewCell {
             leftAcceptSwipePerformed()
             return
         }
-        delegateCall(cell: self, direction: .leftDelete)
+        
         isShowingDeleteView = true
         self.deleteButton.setImage(UIImage(named: "redDeleteButton"), for: .normal)
         print("delete LEFT")
@@ -271,11 +270,6 @@ class CustomTableViewCell: UITableViewCell {
         
     }
     
-    private func delegateCall(cell: CustomTableViewCell, direction: Direction){
-        guard var delegate = delegate else { print("no delegate found")
-            return
-        }
-        delegate.didSwipedCell(cell: cell, direction: direction)
-    }
+ 
     
 }
