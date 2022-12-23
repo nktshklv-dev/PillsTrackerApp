@@ -8,10 +8,8 @@ import SnapKit
 import UIKit
 import UserNotifications
 
-class ViewController: UIViewController{
-
-    //TODO: - create an array of cells, when delegate method is called, deswipe(deselect) other cells except selected one 
-    
+class ViewController: UIViewController, CellSwipeButtonDelegate{
+ 
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet var tableView: UITableView!
@@ -113,8 +111,14 @@ class ViewController: UIViewController{
     @objc func didTapAddButton(){
         performSegue(withIdentifier: "toSecondScreen", sender: self)
     }
-    //MARK: - Delegate Methods
+    //MARK: - Cell Delegate Methods
+    func didTapDeleteButton(_ sender: UIButton) {
+        print("didTapDeleteButton")
+    }
     
+    func didTapAcceptButton(_ sender: UIButton) {
+        print("didTapAcceptButton")
+    }
     
 }
 //MARK: - UITableViewDataSource methods
@@ -132,6 +136,7 @@ extension ViewController: UITableViewDataSource{
         let name = currentPill.tabletName ?? "New Cell"
         let description = currentPill.tabletDescription ?? "no data"
         let imageName = currentPill.imageName ?? "pill"
+        cell.delegate = self
         cell.configure(name: name , description: description, imageName: imageName)
         
         return cell
