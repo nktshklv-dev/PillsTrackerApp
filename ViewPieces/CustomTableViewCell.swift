@@ -14,6 +14,7 @@ enum Direction{
     case leftDelete
 }
 class CustomTableViewCell: UITableViewCell {
+    public var currentPill: Pill? = nil
     static let identifier = String(describing: CustomTableViewCell.self)
     public var delegate: CellSwipeButtonDelegate? = nil
     public var isShowingAcceptView = false
@@ -206,7 +207,8 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     @objc func acceptButtonPressed(){
-        delegate?.didTapAcceptButton(self.acceptButton)
+        guard let pill = currentPill else {return}
+        delegate?.didTapAcceptButton(self.acceptButton, id: pill.id!)
         UIView.animate(withDuration: 0.4) { [weak self] in
             self?.acceptButton.setImage(UIImage(named: "tappedAcceptView"), for: .normal)
             guard let self else { return }
@@ -257,7 +259,8 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     @objc func deleteButtonPressed(){
-        delegate?.didTapDeleteButton(self.deleteButton)
+        guard let pill = currentPill else {return}
+        delegate?.didTapDeleteButton(self.deleteButton, id: pill.id!)
         UIView.animate(withDuration: 0.4) { [weak self] in
             self?.deleteButton.setImage(UIImage(named: "tappedRedDeleteButton"), for: .normal)
             guard let self else { return }

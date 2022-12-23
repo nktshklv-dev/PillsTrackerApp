@@ -10,6 +10,6 @@ import UIKit
 
 
 protocol CellSwipeButtonDelegate{
-    func didTapDeleteButton(_ sender: UIButton)
-    func didTapAcceptButton(_ sender: UIButton)
+    func didTapDeleteButton(_ sender: UIButton, id: String)
+    func didTapAcceptButton(_ sender: UIButton, id: String)
 }

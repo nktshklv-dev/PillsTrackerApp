@@ -9,7 +9,6 @@ import UIKit
 import UserNotifications
 
 class ViewController: UIViewController, CellSwipeButtonDelegate{
- 
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet var tableView: UITableView!
@@ -112,12 +111,33 @@ class ViewController: UIViewController, CellSwipeButtonDelegate{
         performSegue(withIdentifier: "toSecondScreen", sender: self)
     }
     //MARK: - Cell Delegate Methods
-    func didTapDeleteButton(_ sender: UIButton) {
-        print("didTapDeleteButton")
+    func didTapDeleteButton(_ sender: UIButton, id: String) {
+        let ac = UIAlertController(title: "Delete this Pill?", message: "Are you sure to remove this drug? You are going to lose all the information about schedules etc.", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        ac.addAction(UIAlertAction(title: "Remove", style: .destructive){
+            _ in
+            self.deletePill(id: id)
+        })
+        self.present(ac, animated: true)
     }
     
-    func didTapAcceptButton(_ sender: UIButton) {
-        print("didTapAcceptButton")
+    func didTapAcceptButton(_ sender: UIButton, id: String) {
+        
+       
+    }
+    
+    func deletePill(id: String){
+        guard var chosenPill = savedPills.filter({$0.id == id}).first else {return}
+        savedPills = savedPills.filter({$0 != chosenPill})
+        self.context.delete(chosenPill)
+        do{
+            try self.context.save()
+        }
+        catch{
+            print(error.localizedDescription)
+        }
+        
+        tableView.reloadData()
     }
     
 }
@@ -137,6 +157,7 @@ extension ViewController: UITableViewDataSource{
         let description = currentPill.tabletDescription ?? "no data"
         let imageName = currentPill.imageName ?? "pill"
         cell.delegate = self
+        cell.currentPill = currentPill
         cell.configure(name: name , description: description, imageName: imageName)
         
         return cell
