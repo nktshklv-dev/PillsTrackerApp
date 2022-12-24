@@ -469,18 +469,21 @@ class SecondAddPillViewController: UIViewController {
     
     //MARK: - didTapTimeButton
     @objc func didTapTimeButton(_ sender: UIButton){
-        for button in buttonsArray {
-            button.setTitleColor(UIColor(named: "Gray 2"), for: .normal)
+        UIView.animate(withDuration: 0.2, delay: 0) {
+            for button in self.buttonsArray {
+                button.setTitleColor(UIColor(named: "Gray 2"), for: .normal)
+            }
+            if sender.titleColor(for: .normal) == UIColor(named: "Dark"){
+                sender.setTitleColor(UIColor(named: "Gray 2"), for: .normal)
+                
+            }
+            else {
+                sender.setTitleColor(UIColor(named: "Dark"), for: .normal)
+                self.remindTime = sender.titleLabel!.text!
+                print(self.remindTime)
+            }
         }
-        if sender.titleColor(for: .normal) == UIColor(named: "Dark"){
-            sender.setTitleColor(UIColor(named: "Gray 2"), for: .normal)
-            
-        }
-        else {
-//            sender.setTitleColor(UIColor(named: "Dark"), for: .normal)
-            remindTime = sender.titleLabel!.text!
-            print(remindTime)
-        }
+      
         
         checkFields()
        

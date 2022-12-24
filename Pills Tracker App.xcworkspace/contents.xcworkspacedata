@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/nikita/Desktop/Pills Tracker App/Pills Tracker App/Controller/didSwipeCellProtocol.swift">
-   </FileRef>
-   <FileRef
       location = "group:Pills Tracker App.xcodeproj">
    </FileRef>
    <FileRef

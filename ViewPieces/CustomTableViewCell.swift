@@ -209,6 +209,7 @@ class CustomTableViewCell: UITableViewCell {
     @objc func acceptButtonPressed(){
         guard let pill = currentPill else {return}
         delegate?.didTapAcceptButton(self.acceptButton, id: pill.id!)
+        isShowingAcceptView = false
         UIView.animate(withDuration: 0.4) { [weak self] in
             self?.acceptButton.setImage(UIImage(named: "tappedAcceptView"), for: .normal)
             guard let self else { return }
@@ -261,6 +262,7 @@ class CustomTableViewCell: UITableViewCell {
     @objc func deleteButtonPressed(){
         guard let pill = currentPill else {return}
         delegate?.didTapDeleteButton(self.deleteButton, id: pill.id!)
+        isShowingDeleteView = false
         UIView.animate(withDuration: 0.4) { [weak self] in
             self?.deleteButton.setImage(UIImage(named: "tappedRedDeleteButton"), for: .normal)
             guard let self else { return }
