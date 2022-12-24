@@ -502,7 +502,7 @@ class SecondAddPillViewController: UIViewController {
         bottomButton.setImage(UIImage(named: "doneButton"), for: .normal)
     
     }
-    
+    //MARK: - createPillObject
     func createPillObject(){
         let newPill = Pill(context: context)
         newPill.tabletName = selectedTabletName
