@@ -31,6 +31,7 @@ class CustomTableViewCell: UITableViewCell {
         let tabletDescription = UILabel()
         tabletDescription.textColor = UIColor(named: "Gray 1")
         tabletDescription.font = UIFont.systemFont(ofSize: 16)
+        tabletDescription.numberOfLines = 2
         return tabletDescription
     }()
     
@@ -97,6 +98,7 @@ class CustomTableViewCell: UITableViewCell {
         tabletName.snp.makeConstraints { make in
             make.top.equalTo(view.snp.top).offset(24)
             make.left.equalTo(view.snp.left).offset(88)
+            make.right.equalTo(view.snp.right).offset(-10)
             
         }
         
@@ -105,6 +107,7 @@ class CustomTableViewCell: UITableViewCell {
         tabletDescription.snp.makeConstraints { make in
             make.top.equalTo(tabletName.snp.bottom).offset(8)
             make.left.equalTo(tabletName.snp.left)
+            make.right.equalTo(view.snp.right).offset(-10)
         }
         view.addSubview(tabletImage)
         

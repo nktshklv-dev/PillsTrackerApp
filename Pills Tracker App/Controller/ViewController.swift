@@ -14,7 +14,12 @@ class ViewController: UIViewController, CellSwipeButtonDelegate{
     @IBOutlet var tableView: UITableView!
     
     
+    var analyticsViewClass = AnalyticsView()
+    var progressView: CircularProgressView? = nil
+    var analyticsView = UIView()
     var savedPills = [Pill]()
+    var selectedPills = 0
+    var selectedPillsIDs = [String]()
     let greetingLabel = UILabel()
     let dateLabel = UILabel()
     let planProgressView = UIView()
@@ -82,7 +87,9 @@ class ViewController: UIViewController, CellSwipeButtonDelegate{
         
         
         
-        let analyticsView = setupAnalyticsView()
+        analyticsView = analyticsViewClass.setupAnalyticsView()
+        
+        progressView = analyticsViewClass.progressView
         view.addSubview(analyticsView)
         analyticsView.frame = CGRect(x: 30, y: 0, width: 327, height: 126)
         
@@ -122,8 +129,25 @@ class ViewController: UIViewController, CellSwipeButtonDelegate{
     }
     
     func didTapAcceptButton(_ sender: UIButton, id: String) {
-        
+      
+        if selectedPillsIDs.contains(id){
+            let ac = UIAlertController(title: "Oops!", message: "You've already marked this drug as taken one", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            return
+        }
+        else {
+            selectedPillsIDs.append(id)
+            selectedPills = selectedPillsIDs.count
+        }
+        let newProgress = getNewProgress()
+        analyticsViewClass.setNewProgress(newProgress: newProgress)
        
+    }
+    func getNewProgress() -> Float{
+        let numberOfAllPills = Float(savedPills.count)
+        let newProgress = (Float(selectedPills) / numberOfAllPills)
+        print(newProgress)
+        return newProgress
     }
     
     func deletePill(id: String){
