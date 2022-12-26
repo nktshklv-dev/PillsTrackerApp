@@ -47,6 +47,7 @@ class ViewController: UIViewController, CellSwipeButtonDelegate{
         super.viewWillAppear(animated)
         UIApplication.shared.applicationIconBadgeNumber = -1;
         fetchRequest()
+        updateProgress()
         tableView.reloadData()
     }
     
@@ -138,17 +139,24 @@ class ViewController: UIViewController, CellSwipeButtonDelegate{
         }
         else {
             selectedPillsIDs.append(id)
+            print("Selected pills num: \(selectedPillsIDs.count)")
             selectedPills = selectedPillsIDs.count
         }
-        let newProgress = getNewProgress()
-        analyticsViewClass.setNewProgress(newProgress: newProgress)
+        updateProgress()
        
     }
     func getNewProgress() -> Float{
         let numberOfAllPills = Float(savedPills.count)
-        let newProgress = (Float(selectedPills) / numberOfAllPills)
-        print(newProgress)
+        print("savedPills: \(savedPills.count)")
+        var newProgress = (Float(selectedPills) / numberOfAllPills)
+        if numberOfAllPills == 0 {newProgress = 0.0}
+        print("newProgress: \(newProgress)")
         return newProgress
+    }
+    
+    func updateProgress(){
+        var progress = getNewProgress()
+        analyticsViewClass.setNewProgress(newProgress: progress)
     }
     
     func deletePill(id: String){
@@ -161,7 +169,7 @@ class ViewController: UIViewController, CellSwipeButtonDelegate{
         catch{
             print(error.localizedDescription)
         }
-        
+        updateProgress()
         tableView.reloadData()
     }
     
