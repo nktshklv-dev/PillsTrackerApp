@@ -43,9 +43,6 @@ class SecondAddPillViewController: UIViewController {
     var notificationContent: UNMutableNotificationContent!
         override func viewDidLoad() {
             super.viewDidLoad()
-            
-            let center = UNUserNotificationCenter.current()
-            
             //UNMutableNotificationContent
            notificationContent = UNMutableNotificationContent()
            notificationContent.title = "Hey!"

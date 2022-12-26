@@ -155,14 +155,14 @@ class ViewController: UIViewController, CellSwipeButtonDelegate{
     }
     
     func updateProgress(){
-        var progress = getNewProgress()
+        let progress = getNewProgress()
         analyticsViewClass.setNewProgress(newProgress: progress)
     }
     
     func deletePill(id: String){
-        guard var chosenPill = savedPills.filter({$0.id == id}).first else {return}
+        guard let chosenPill = savedPills.filter({$0.id == id}).first else {return}
         savedPills = savedPills.filter({$0 != chosenPill})
-        if var index = selectedPillsIDs.firstIndex(of: id){
+        if let index = selectedPillsIDs.firstIndex(of: id){
             selectedPillsIDs.remove(at: index)
             selectedPills = selectedPillsIDs.count
             print(selectedPills)
@@ -238,7 +238,7 @@ extension ViewController: UITableViewDelegate{
 
 extension Date {
     func dayOfWeek() -> String {
-        var dayNum = Date().dayNumberOfWeek()!
+        let dayNum = Date().dayNumberOfWeek()!
         var dateToReturn = ""
         switch dayNum{
         case 1:
