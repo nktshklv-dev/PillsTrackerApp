@@ -57,7 +57,7 @@ class AnalyticsView{
        }
        
        
-        progressView = CircularProgressView(frame: CGRect(x: 0, y: 0, width: 86, height: 86), lineWidth: 10, rounded: false)
+       progressView = CircularProgressView(frame: CGRect(x: 0, y: 0, width: 86, height: 86), lineWidth: 10, rounded: false)
        progressView.progressColor = UIColor(named: "Green")!
        progressView.trackColor = UIColor(named: "Green 2")!
         progressView.progress = 0.0
@@ -69,12 +69,13 @@ class AnalyticsView{
        
        progressLabel = UILabel()
        progressLabel.textColor = UIColor(named: "Green")!
-       progressLabel.font = UIFont.boldSystemFont(ofSize: 15)
+       progressLabel.font = UIFont.boldSystemFont(ofSize: 20)
        progressLabel.text = "0%"
        progressView.addSubview(progressLabel)
        progressLabel.snp.makeConstraints { make in
-           make.top.equalTo(progressView.snp.top).offset(33)
-           make.left.equalTo(progressView.snp.left).offset(23)
+           make.top.equalTo(progressView.snp.top).offset(31)
+           
+           make.center.equalTo(progressView.snp.center).offset(42)
            
        }
        

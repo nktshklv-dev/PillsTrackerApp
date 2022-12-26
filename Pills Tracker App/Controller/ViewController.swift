@@ -131,8 +131,9 @@ class ViewController: UIViewController, CellSwipeButtonDelegate{
     func didTapAcceptButton(_ sender: UIButton, id: String) {
       
         if selectedPillsIDs.contains(id){
-            let ac = UIAlertController(title: "Oops!", message: "You've already marked this drug as taken one", preferredStyle: .alert)
+            let ac = UIAlertController(title: "Oops!", message: "You've already marked this drug as the taken one", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
             return
         }
         else {
