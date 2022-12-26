@@ -162,6 +162,11 @@ class ViewController: UIViewController, CellSwipeButtonDelegate{
     func deletePill(id: String){
         guard var chosenPill = savedPills.filter({$0.id == id}).first else {return}
         savedPills = savedPills.filter({$0 != chosenPill})
+        if var index = selectedPillsIDs.firstIndex(of: id){
+            selectedPillsIDs.remove(at: index)
+            selectedPills = selectedPillsIDs.count
+        }
+        
         self.context.delete(chosenPill)
         do{
             try self.context.save()
@@ -169,6 +174,7 @@ class ViewController: UIViewController, CellSwipeButtonDelegate{
         catch{
             print(error.localizedDescription)
         }
+       
         updateProgress()
         tableView.reloadData()
     }
