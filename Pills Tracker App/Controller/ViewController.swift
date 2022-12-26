@@ -165,6 +165,7 @@ class ViewController: UIViewController, CellSwipeButtonDelegate{
         if var index = selectedPillsIDs.firstIndex(of: id){
             selectedPillsIDs.remove(at: index)
             selectedPills = selectedPillsIDs.count
+            print(selectedPills)
         }
         
         self.context.delete(chosenPill)
