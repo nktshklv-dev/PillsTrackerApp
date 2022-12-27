@@ -85,10 +85,40 @@ class AnalyticsView{
     
     func setNewProgress(newProgress: Float){
         print(newProgress)
-        progressView.progress = newProgress
-        var progressString = Int((newProgress * 100)).description + "%"
-        progressLabel.text = progressString
+        let newValue = Int(newProgress * 100)
+        progressView.progress = newProgress 
+        changeProgressLabelWithAnimation(newValue: newValue)
     }
+    
+    //MARK: - animated text updating?
+    func changeProgressLabelWithAnimation(newValue: Int){
+        guard let currentRawValue = (progressLabel.text)?.dropLast() else {return}
+        guard var currentValue = Int(String(describing: currentRawValue)) else {return}
+            if newValue > currentValue{
+                while currentValue < newValue{
+                        print("newValue: \(newValue), currentValue: \(currentValue)")
+                        currentValue += 1
+                        self.updateProgressLabel(with: currentValue)
+                }
+            }
+            else {
+                while currentValue > newValue{
+                        currentValue -= 1
+                        self.updateProgressLabel(with: currentValue)
+                }
+            }
+       
+        
+    }
+    
+    func updateProgressLabel(with value: Int){
+        print("updated to: \(value)")
+        self.progressLabel.text = "\(value)%"
+          
+       
+    }
+    
+   
 }
  
 
