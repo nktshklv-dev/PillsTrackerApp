@@ -86,7 +86,7 @@ class AnalyticsView{
     func setNewProgress(newProgress: Float){
         print(newProgress)
         let newValue = Int(newProgress * 100)
-        progressView.progress = newProgress 
+        progressView.progress = newProgress
         changeProgressLabelWithAnimation(newValue: newValue)
     }
     
@@ -114,8 +114,6 @@ class AnalyticsView{
     func updateProgressLabel(with value: Int){
         print("updated to: \(value)")
         self.progressLabel.text = "\(value)%"
-          
-       
     }
     
    
