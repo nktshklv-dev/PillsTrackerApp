@@ -90,7 +90,7 @@ class AnalyticsView{
         changeProgressLabelWithAnimation(newValue: newValue)
     }
     
-    //MARK: - animated text updating?
+    //MARK: - animated text updating? ------------------------------------
     func changeProgressLabelWithAnimation(newValue: Int){
         guard let currentRawValue = (progressLabel.text)?.dropLast() else {return}
         guard var currentValue = Int(String(describing: currentRawValue)) else {return}
@@ -115,6 +115,7 @@ class AnalyticsView{
         print("updated to: \(value)")
         self.progressLabel.text = "\(value)%"
     }
+    //MARK: ------------------------------------ 
     
    
 }
