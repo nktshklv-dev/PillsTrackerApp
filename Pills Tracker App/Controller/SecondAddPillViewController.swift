@@ -38,7 +38,7 @@ class SecondAddPillViewController: UIViewController {
     var buttonsArray = [UIButton]()
     var reminderStackView = UIStackView()
     var bottomButton = UIButton()
-    var remindTime = ""
+    var remindTime: Int?
     var textFields = [Int: UITextField]()
     var notificationContent: UNMutableNotificationContent!
         override func viewDidLoad() {
@@ -476,8 +476,32 @@ class SecondAddPillViewController: UIViewController {
             }
             else {
                 sender.setTitleColor(UIColor(named: "Dark"), for: .normal)
-                self.remindTime = sender.titleLabel!.text!
-                print(self.remindTime)
+                var text = sender.titleLabel?.text
+                switch text{
+                    case "in 5 m":
+                        self.remindTime = 5
+                        break
+                    case "10 m":
+                        self.remindTime = 10
+                        break
+                    case "15 m":
+                        self.remindTime = 15
+                        break
+                    case "20 m":
+                        self.remindTime = 20
+                        break
+                    case "30 m":
+                        self.remindTime = 30
+                        break
+                    default:
+                        self.remindTime = 0
+                        break
+                    
+                    
+                }
+                print("Remind time: ", self.remindTime!)
+                
+                
             }
         }
       
