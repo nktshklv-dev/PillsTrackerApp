@@ -219,9 +219,10 @@ class SecondAddPillViewController: UIViewController {
     
     
     
-    //MARK: - addTimestamp
+    //MARK: - add doseTimeView
     @objc func addTimestamp(){
-        if timeTextField.text?.isEmpty == true {
+        guard var prevTextField = textFields[numberOfFields] else {return}
+        if prevTextField.text?.isEmpty == true {
             let ac = UIAlertController(title: "Please, set the current timestamp!", message: nil, preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .default))
             present(ac, animated: true)
@@ -238,14 +239,15 @@ class SecondAddPillViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = UIColor(named: "Dark")
         
-        timeTextField = UITextField()
-        timeTextField.isUserInteractionEnabled = false
+        var timeTextField = UITextField()
+        timeTextField.isUserInteractionEnabled = true
         timeTextField.textColor = UIColor(named: "Dark")
         timeTextField.font = UIFont.boldSystemFont(ofSize: 20)
         timeTextField.placeholder = "00:00"
         timeTextField.inputView = datePicker
-        textFields[numberOfFields] = timeTextField
         numberOfFields += 1
+        textFields[numberOfFields] = timeTextField
+       
         
         datePicker.datePickerMode = .time
         datePicker.preferredDatePickerStyle = .wheels
@@ -349,13 +351,12 @@ class SecondAddPillViewController: UIViewController {
                 label.font = UIFont.boldSystemFont(ofSize: 20)
                 label.textColor = UIColor(named: "Dark")
                 
-                timeTextField = UITextField()
+                var timeTextField = UITextField()
                 timeTextField.textColor = UIColor(named: "Dark")
                 timeTextField.font = UIFont.boldSystemFont(ofSize: 20)
                 timeTextField.placeholder = "00:00"
                 timeTextField.inputView = datePicker
                 textFields[numberOfFields] = timeTextField
-                numberOfFields += 1
                 
                 datePicker.datePickerMode = .time
                 datePicker.preferredDatePickerStyle = .wheels
@@ -393,7 +394,8 @@ class SecondAddPillViewController: UIViewController {
             let components = Calendar.current.dateComponents([.hour, .minute], from: date)
             let hour = components.hour!
             let minute = components.minute!
-            timeTextField.text = formatter.string(from: datePicker.date)
+            guard var textField = textFields[numberOfFields] else {print("no"); return }
+            textField.text = formatter.string(from: datePicker.date)
             timestamps.append(formatter.string(from: datePicker.date))
             
             
