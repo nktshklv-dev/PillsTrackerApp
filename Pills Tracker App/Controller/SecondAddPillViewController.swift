@@ -257,6 +257,7 @@ class SecondAddPillViewController: UIViewController {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneAction))
+        done.tag = numberOfFields
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         toolbar.setItems([flexibleSpace, done], animated: true)
         
@@ -273,6 +274,10 @@ class SecondAddPillViewController: UIViewController {
     //MARK: - didTapBottomButton
     @objc func didTapBottomButton(){
         createPillObject()
+        for (number, date) in timestamps.enumerated(){
+            guard var currDate = timestamps[number] else {return}
+            createLocalNotification(date: currDate)
+        }
         navigationController?.popToRootViewController(animated: true)
         
         
@@ -353,7 +358,7 @@ class SecondAddPillViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = UIColor(named: "Dark")
         
-        var timeTextField = UITextField()
+        let timeTextField = UITextField()
         timeTextField.textColor = UIColor(named: "Dark")
         timeTextField.font = UIFont.boldSystemFont(ofSize: 20)
         timeTextField.placeholder = "00:00"
@@ -368,6 +373,7 @@ class SecondAddPillViewController: UIViewController {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneAction))
+        done.tag = numberOfFields
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         toolbar.setItems([flexibleSpace, done], animated: true)
         
@@ -379,8 +385,9 @@ class SecondAddPillViewController: UIViewController {
         stackView.addArrangedSubview(horStack)
     }
     //MARK: - doneAction
-    @objc func doneAction(){
-        getDateFromPicker()
+    @objc func doneAction(_ sender: UIBarButtonItem){
+        getDateFromPicker(sender.tag)
+        print(sender.tag)
         checkFields()
         if timestampCount > 1 {
             addButton.isHidden = true
@@ -389,26 +396,25 @@ class SecondAddPillViewController: UIViewController {
     }
     
     //MARK: - getDateFromPicker
-    func getDateFromPicker(){
+    func getDateFromPicker(_ senderTag: Int){
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         datePicker.timeZone = NSTimeZone.system
         let date = datePicker.date
+        let components = Calendar.current.dateComponents([.hour, .minute], from: date)
+        
+        guard let textField = textFields[senderTag] else {print("no"); return }
+        textField.text = formatter.string(from: datePicker.date)
+        timestamps[textField.tag] = date
+        print(timestamps)
+    }
+    
+    //MARK: - createLocalNotification
+    func createLocalNotification(date: Date){
         guard let newDate = date.getDateFor(minutes: -remindInTime) else {return}
         let components = Calendar.current.dateComponents([.hour, .minute], from: newDate)
-        let hour = components.hour!
-        let minute = components.minute!
-        guard var textField = textFields[numberOfFields] else {print("no"); return }
-        textField.text = formatter.string(from: datePicker.date)
-        timestamps[textField.tag] = newDate
-        print(timestamps)
-        
-        
-        //MARK: - Notifications code
-        var datComp = DateComponents()
-        datComp.hour = hour
-        datComp.minute = minute
-        let trigger = UNCalendarNotificationTrigger(dateMatching: datComp, repeats: true)
+        print(newDate)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
         let id = tabletId!
         let request = UNNotificationRequest(identifier: id, content: notificationContent, trigger: trigger)
         UNUserNotificationCenter.current().add(request) { (error : Error?) in
