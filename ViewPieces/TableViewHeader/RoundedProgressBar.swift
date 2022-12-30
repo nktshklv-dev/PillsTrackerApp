@@ -22,7 +22,7 @@ fileprivate let lineWidth: CGFloat?
 
 
 
-var timeToFill = 3.0
+    var timeToFill = 1.0
 
 
 

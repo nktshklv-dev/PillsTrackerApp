@@ -11,6 +11,7 @@ import UIKit
 class AnalyticsView{
     var progressView = CircularProgressView()
     var progressLabel = UILabel()
+    var labelView = UILabel()
     
     func setupAnalyticsView() -> UIView {
        
@@ -20,11 +21,11 @@ class AnalyticsView{
         beginView.layer.borderWidth = 0.5
        
       
-       let labelView = UILabel()
+
        beginView.addSubview(labelView)
        labelView.numberOfLines = 2
        labelView.textAlignment = .left
-       labelView.text = "Your plan\nis almost done!"
+       labelView.text = "You haven't taken\nany pills today."
        labelView.textColor = UIColor(named: "Dark")
        labelView.font = UIFont.boldSystemFont(ofSize: 24)
        labelView.frame.size.width = 177
@@ -92,6 +93,15 @@ class AnalyticsView{
     
     //MARK: - animated text updating? ------------------------------------
     func changeProgressLabelWithAnimation(newValue: Int){
+        if newValue == 0{
+            labelView.text = "It's time\nto take a pill!"
+        }
+        else if newValue > 0 && newValue < 100{
+            labelView.text = "Your plan\nis almost done!"
+        }
+        else if newValue == 100{
+            labelView.text = "Your plan\nis completed!"
+        }
         guard let currentRawValue = (progressLabel.text)?.dropLast() else {return}
         guard var currentValue = Int(String(describing: currentRawValue)) else {return}
             if newValue > currentValue{
@@ -108,7 +118,6 @@ class AnalyticsView{
                 }
             }
        
-        
     }
     
     func updateProgressLabel(with value: Int){
