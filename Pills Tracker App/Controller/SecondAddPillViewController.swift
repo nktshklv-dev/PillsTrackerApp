@@ -401,7 +401,6 @@ class SecondAddPillViewController: UIViewController {
         formatter.dateFormat = "HH:mm"
         datePicker.timeZone = NSTimeZone.system
         let date = datePicker.date
-        let components = Calendar.current.dateComponents([.hour, .minute], from: date)
         
         guard let textField = textFields[senderTag] else {print("no"); return }
         textField.text = formatter.string(from: datePicker.date)
@@ -411,9 +410,9 @@ class SecondAddPillViewController: UIViewController {
     
     //MARK: - createLocalNotification
     func createLocalNotification(date: Date){
-        guard let newDate = date.getDateFor(minutes: -remindInTime) else {return}
+        guard let newDate = subtractMinutes(from: date, minutes: remindInTime) else {return}
         let components = Calendar.current.dateComponents([.hour, .minute], from: newDate)
-        print(newDate)
+        print("newDate components: \(components.hour), \(components.minute)")
         let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
         let id = tabletId!
         let request = UNNotificationRequest(identifier: id, content: notificationContent, trigger: trigger)
@@ -554,12 +553,13 @@ class SecondAddPillViewController: UIViewController {
             print(error.localizedDescription)
         }
     }
-}
-
-extension Date {
-    func getDateFor(minutes:Int) -> Date? {
-        return Calendar.current.date(byAdding: .minute, value: minutes, to: Date())
+    func subtractMinutes(from date: Date, minutes: Int) -> Date?{
+        let modifiedDate = Calendar.current.date(byAdding: .minute, value: -minutes, to: date)!
+        print("Raw Date: \(date), Minutes: \(minutes), Modified Date: \(modifiedDate)")
+        return modifiedDate
     }
 }
+
+ 
 
 

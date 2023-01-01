@@ -8,7 +8,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "24A1628F-F591-41FE-AA97-2318E8385167"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pills Tracker App/Controller/SecondAddPillViewController.swift"
@@ -40,7 +40,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "9FF47C53-5EDB-4F37-A7F1-376C4A4E4448"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pills Tracker App/Controller/SecondAddPillViewController.swift"
@@ -56,7 +56,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "C7A34083-998B-41AE-A21E-E517F7D40383"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pills Tracker App/Controller/SecondAddPillViewController.swift"
@@ -71,16 +71,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BB419A89-2026-4DE6-A9EB-82489FC1CA93"
+            uuid = "6DFBD40E-6FE5-4321-89D6-3BCC698D970B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pills Tracker App/Controller/SecondAddPillViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "560"
-            endingLineNumber = "560"
-            landmarkName = "getDateFor(minutes:)"
+            startingLineNumber = "412"
+            endingLineNumber = "412"
+            landmarkName = "createLocalNotification(date:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "596EFA77-62FA-4E3C-925A-D33DA2ECE351"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pills Tracker App/Controller/SecondAddPillViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "556"
+            endingLineNumber = "556"
+            landmarkName = "subtractMinutes(from:minutes:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
