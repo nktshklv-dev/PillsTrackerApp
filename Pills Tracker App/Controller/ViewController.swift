@@ -130,7 +130,7 @@ class ViewController: UIViewController, CellSwipeButtonDelegate{
     }
     
     func didTapAcceptButton(_ sender: UIButton, id: String) {
-      
+        
         if selectedPillsIDs.contains(id){
             let ac = UIAlertController(title: "Oops!", message: "You've already marked this drug as the taken one", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .default))
@@ -143,7 +143,7 @@ class ViewController: UIViewController, CellSwipeButtonDelegate{
             selectedPills = selectedPillsIDs.count
         }
         updateProgress()
-       
+        
     }
     func getNewProgress() -> Float{
         let numberOfAllPills = Float(savedPills.count)
@@ -175,7 +175,7 @@ class ViewController: UIViewController, CellSwipeButtonDelegate{
         catch{
             print(error.localizedDescription)
         }
-       
+        
         updateProgress()
         tableView.reloadData()
     }
@@ -201,9 +201,19 @@ extension ViewController: UITableViewDataSource{
         cell.configure(name: name , description: description, imageName: imageName)
         
         return cell
-        
-        
-        
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let returnView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 20))
+        let label = UILabel()
+        label.text = "8:00"
+        label.textColor = UIColor(named: "Dark")
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        returnView.addSubview(label)
+        label.snp.makeConstraints { make in
+            make.left.equalTo(returnView.snp.left).offset(24)
+            make.top.equalTo(returnView.snp.top)
+        }
+        return returnView
     }
 }
 

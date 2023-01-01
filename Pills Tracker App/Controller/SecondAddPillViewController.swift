@@ -193,8 +193,8 @@ class SecondAddPillViewController: UIViewController {
             make.right.equalTo(view.snp.right).offset(-24)
             make.top.equalTo(titleLabel.snp.bottom).offset(326)
         }
-        let stack = getMinutesView()
-        reminderStackView.addArrangedSubview(stack)
+        let minutesView = getMinutesView()
+        reminderStackView.addArrangedSubview(minutesView)
         reminderStackView.arrangedSubviews[1].isHidden = true
         self.reminderStackView.arrangedSubviews[1].layer.opacity = 0
         
